@@ -28,10 +28,7 @@ var GameLayer = cc.Layer.extend({
         this.depuracion = new cc.PhysicsDebugNode(this.space);
         this.addChild(this.depuracion, 10);
 
-
         this.cargarMapa();
-
-
 
         //Cargar camioneta
         this.camioneta = new cc.PhysicsSprite("#camioneta.png");
@@ -46,42 +43,21 @@ var GameLayer = cc.Layer.extend({
         cc.eventManager.addListener({
             event: cc.EventListener.KEYBOARD,
             onKeyPressed:  function(keyCode, event){
-                var moverCamioneta = null;
                 var instancia = event.getCurrentTarget();
                 if(instancia.keyPulsada == keyCode)
                     return;
-
                 instancia.keyPulsada = keyCode;
-
-
                 if( keyCode == 37){
-                    console.log("Ir izquierda ");
-                      moverCamioneta =
-                        cc.MoveTo.create(Math.abs(instancia.spriteBarra.x - 0)/500,
-                        cc.p(0,cc.winSize.height*0.1));
+                     instancia.camioneta.body.applyImpulse(cp.v(-100,0), cp.v(0,0));
                 }
-
                 if( keyCode == 39){
-                     console.log("Ir derecha ");
-                      moverCamioneta =
-                       cc.MoveTo.create(Math.abs(instancia.spriteBarra.x - cc.winSize.width)/500,
-                       cc.p(cc.winSize.width,cc.winSize.height*0.1));
+                       instancia.camioneta.body.applyImpulse(cp.v(100,0), cp.v(0,0));
                 }
-
-                cc.director.getActionManager().
-                    removeAllActionsFromTarget(instancia.spriteBarra, true);
-
-                if( moverCamioneta != null)
-                     instancia.spriteBarra.runAction(actionMoverBarraX);
-
             },
             onKeyReleased: function(keyCode, event){
                 if(keyCode == 37 || keyCode == 39){
                       var instancia = event.getCurrentTarget();
                       instancia.keyPulsada = null;
-                      cc.director.getActionManager().
-                        removeAllActionsFromTarget(instancia.spriteBarra, true);
-
                 }
             }
         }, this);
@@ -91,13 +67,13 @@ var GameLayer = cc.Layer.extend({
     },update:function (dt) {
         this.space.step(dt);
 
-        var capaControles = this.getParent().getChildByTag(idCapaControles);
+       /* var capaControles = this.getParent().getChildByTag(idCapaControles);
 
         if ( capaControles.monedas >= 3){
             console.log("Nivel: ", nivelActual);
             nivelActual = nivelActual + 1;
             cc.director.runScene(new GameScene());
-        }
+        }*/
     }, cargarMapa:function () {
         this.mapa = new cc.TMXTiledMap(res.mapa1_tmx);
         // Añadirlo a la Layer

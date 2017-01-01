@@ -24,6 +24,8 @@ var GameLayer = cc.Layer.extend({
         // Inicializar Space
         this.space = new cp.Space();
         this.space.gravity = cp.v(0, -350);
+        this.space.damping = 0.5;
+
         // Depuración
         this.depuracion = new cc.PhysicsDebugNode(this.space);
         this.addChild(this.depuracion, 10);
@@ -66,6 +68,9 @@ var GameLayer = cc.Layer.extend({
         return true;
     },update:function (dt) {
         this.space.step(dt);
+
+        var posicionCamioneta = this.camioneta.getBody().p.x-200;
+        this.setPosition(cc.p(- posicionCamioneta,0));
 
        /* var capaControles = this.getParent().getChildByTag(idCapaControles);
 

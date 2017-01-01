@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="150" height="20" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tiles32" tilewidth="32" tileheight="32">
+  <image source="tiles32.png" width="448" height="224"/>
+ </tileset>
+ <layer name="PatronesFondo" width="150" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztw0ENAAAMA6FTVf/SJmMfSFg1VVVVVVVVVVVVVVV9fhEIeO8=
+  </data>
+ </layer>
+ <layer name="PatronesTerreno" width="150" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztmMEKgzAQBUVbWqgXD+3/f2qVErqE3SSsMY1lBt5FMJusExIcBgAAAAAAAAAAgDz3NVeRuTCjyK35rKFnNqdeaxaRUq/kO8/BdmurMSmBL6FHWp+352fat5pTwauHyGw8i9/T3LJqLMct63TIHln7N7VveyL1vWOHtGhexetP1cCrD3GPUudC727lvvcer8L6p0wNvCq/g5TeN35JzqkaXpUmV0PLmbDulSFW71NeBbcuiaTuxJ6eW2PJteScwqs6lOxfr1eeMY7wyjMvvPLjdQqv6ng1Nkzpv5M9CeeQ1ym8quNVy7Tw6qh54lW/wSu8wqv/9apFH98m+z2d
+  </data>
+ </layer>
+ <objectgroup name="Suelos" width="150" height="20"/>
+</map>

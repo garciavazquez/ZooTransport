@@ -14,9 +14,13 @@ var GameLayer = cc.Layer.extend({
     teclaIzquierda:false,
     teclaDerecha:false,
     camioneta:null,
+    tiempo:0,
     ctor:function () {
         this._super();
         var size = cc.winSize;
+
+        this.tiempo = new Date().getTime();
+
 
         //cache
         cc.spriteFrameCache.addSpriteFrames(res.camioneta_plist);
@@ -46,14 +50,16 @@ var GameLayer = cc.Layer.extend({
             event: cc.EventListener.KEYBOARD,
             onKeyPressed:  function(keyCode, event){
                 var instancia = event.getCurrentTarget();
-                if(instancia.keyPulsada == keyCode)
-                    return;
+                /*if(instancia.keyPulsada == keyCode)
+                    return;*/
                 instancia.keyPulsada = keyCode;
-                if( keyCode == 37){
+                if( keyCode == 37 && (new Date().getTime() - instancia.tiempo) > 200 ){
                      instancia.camioneta.body.applyImpulse(cp.v(-100,0), cp.v(0,0));
+                     instancia.tiempo = new Date().getTime();
                 }
-                if( keyCode == 39){
-                       instancia.camioneta.body.applyImpulse(cp.v(100,0), cp.v(0,0));
+                if( keyCode == 39 && (new Date().getTime() - instancia.tiempo) > 200 ){
+                       instancia.camioneta.body.applyImpulse(cp.v(150,0), cp.v(0,0));
+                       instancia.tiempo = new Date().getTime();
                 }
             },
             onKeyReleased: function(keyCode, event){
@@ -71,6 +77,11 @@ var GameLayer = cc.Layer.extend({
 
         var posicionCamioneta = this.camioneta.getBody().p.x-200;
         this.setPosition(cc.p(- posicionCamioneta,0));
+        var bodiCamioneta = this.camioneta.body;
+        if(bodiCamioneta.getVel().x > 200)
+            bodiCamioneta.setVel(cp.v(200, bodiCamioneta.getVel().y))
+        if(bodiCamioneta.getVel().x < -100)
+             bodiCamioneta.setVel(cp.v(-100, bodiCamioneta.getVel().y))
 
        /* var capaControles = this.getParent().getChildByTag(idCapaControles);
 

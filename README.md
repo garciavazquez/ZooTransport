@@ -3,6 +3,7 @@ Juego que consiste en transportar animales del inicio a la meta sin que se caiga
 
 Descripción:
 El objetivo del juego es transportar animales en una camioneta de un punto a otro sin que se caigan.
+
 Características:
 - Si cae un animal vuelve a aparecer en el punto de origen.
 - Varios tipos de animales:

@@ -9,7 +9,9 @@ var res = {
     mapa2_tmx: "res/mapa2.tmx",
     mapa3_tmx: "res/mapa3.tmx",
     mapa4_tmx: "res/mapa4.tmx",
-    mapa5_tmx: "res/mapa5.tmx"
+    mapa5_tmx: "res/mapa5.tmx",
+    camioneta: "res/camioneta.png",
+    camioneta_plist : "res/camioneta.plist",
 };
 
 var g_resources = [];

@@ -4,6 +4,8 @@ var MenuLayer = cc.Layer.extend({
         this._super();
         var size = cc.winSize;
 
+
+
         // Fondo
         var spriteFondoTitulo= new cc.Sprite(res.menu_titulo_png);
         // Asigno posición central

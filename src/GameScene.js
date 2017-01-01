@@ -13,9 +13,13 @@ var GameLayer = cc.Layer.extend({
     mapaAncho: null,
     teclaIzquierda:false,
     teclaDerecha:false,
+    camioneta:null,
     ctor:function () {
         this._super();
         var size = cc.winSize;
+
+        //cache
+        cc.spriteFrameCache.addSpriteFrames(res.camioneta_plist);
 
         // Inicializar Space
         this.space = new cp.Space();
@@ -24,7 +28,64 @@ var GameLayer = cc.Layer.extend({
         this.depuracion = new cc.PhysicsDebugNode(this.space);
         this.addChild(this.depuracion, 10);
 
+
         this.cargarMapa();
+
+
+
+        //Cargar camioneta
+        this.camioneta = new cc.PhysicsSprite("#camioneta.png");
+        var body = new cp.Body(1, cp.momentForBox(1, 0, this.camioneta.width-20, this.camioneta.height-20));
+        body.p = cc.p(size.width*0.2 , size.height*0.8);
+        this.camioneta.setBody(body);
+        this.space.addBody(body);
+        var shape = new cp.BoxShape(body, this.camioneta.width-20, this.camioneta.height-20);
+        this.space.addShape(shape);
+        this.addChild(this.camioneta);
+
+        cc.eventManager.addListener({
+            event: cc.EventListener.KEYBOARD,
+            onKeyPressed:  function(keyCode, event){
+                var moverCamioneta = null;
+                var instancia = event.getCurrentTarget();
+                if(instancia.keyPulsada == keyCode)
+                    return;
+
+                instancia.keyPulsada = keyCode;
+
+
+                if( keyCode == 37){
+                    console.log("Ir izquierda ");
+                      moverCamioneta =
+                        cc.MoveTo.create(Math.abs(instancia.spriteBarra.x - 0)/500,
+                        cc.p(0,cc.winSize.height*0.1));
+                }
+
+                if( keyCode == 39){
+                     console.log("Ir derecha ");
+                      moverCamioneta =
+                       cc.MoveTo.create(Math.abs(instancia.spriteBarra.x - cc.winSize.width)/500,
+                       cc.p(cc.winSize.width,cc.winSize.height*0.1));
+                }
+
+                cc.director.getActionManager().
+                    removeAllActionsFromTarget(instancia.spriteBarra, true);
+
+                if( moverCamioneta != null)
+                     instancia.spriteBarra.runAction(actionMoverBarraX);
+
+            },
+            onKeyReleased: function(keyCode, event){
+                if(keyCode == 37 || keyCode == 39){
+                      var instancia = event.getCurrentTarget();
+                      instancia.keyPulsada = null;
+                      cc.director.getActionManager().
+                        removeAllActionsFromTarget(instancia.spriteBarra, true);
+
+                }
+            }
+        }, this);
+
         this.scheduleUpdate();
         return true;
     },update:function (dt) {
@@ -75,6 +136,7 @@ var GameLayer = cc.Layer.extend({
 var GameScene = cc.Scene.extend({
     onEnter:function () {
         this._super();
+        cc.director.resume();
         var layer = new GameLayer();
         this.addChild(layer);
     }

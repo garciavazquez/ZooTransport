@@ -12,6 +12,8 @@ var res = {
     mapa5_tmx: "res/mapa5.tmx",
     camioneta: "res/camioneta.png",
     camioneta_plist : "res/camioneta.plist",
+    rana: "res/rana.png",
+    rana_plist : "res/rana.plist",
 };
 
 var g_resources = [];

@@ -1,8 +1,9 @@
 var niveles = [ res.mapa1_tmx , res.mapa2_tmx, res.mapa3_tmx, res.mapa4_tmx, res.mapa5_tmx ];
 var nivelActual = 0;
 
-var tipoJugador = 1;
+var tipoCamioneta = 1;
 var tipoSuelo = 2;
+var tipoAnimal = 3;
 
 var idCapaJuego = 1;
 var idCapaControles = 2;
@@ -15,6 +16,7 @@ var GameLayer = cc.Layer.extend({
     teclaDerecha:false,
     camioneta:null,
     tiempo:0,
+    animal:null,
     ctor:function () {
         this._super();
         var size = cc.winSize;
@@ -24,6 +26,7 @@ var GameLayer = cc.Layer.extend({
 
         //cache
         cc.spriteFrameCache.addSpriteFrames(res.camioneta_plist);
+        cc.spriteFrameCache.addSpriteFrames(res.rana_plist);
 
         // Inicializar Space
         this.space = new cp.Space();
@@ -31,20 +34,25 @@ var GameLayer = cc.Layer.extend({
         this.space.damping = 0.5;
 
         // Depuración
-        this.depuracion = new cc.PhysicsDebugNode(this.space);
-        this.addChild(this.depuracion, 10);
+      /*  this.depuracion = new cc.PhysicsDebugNode(this.space);
+        this.addChild(this.depuracion, 10);*/
 
         this.cargarMapa();
 
         //Cargar camioneta
         this.camioneta = new cc.PhysicsSprite("#camioneta.png");
         var body = new cp.Body(1, cp.momentForBox(1, 0, this.camioneta.width-20, this.camioneta.height-20));
-        body.p = cc.p(size.width*0.2 , size.height*0.8);
+        body.p = cc.p(size.width*0.2 , size.height*0.7);
         this.camioneta.setBody(body);
         this.space.addBody(body);
-        var shape = new cp.BoxShape(body, this.camioneta.width-20, this.camioneta.height-20);
+        var shape = new cp.BoxShape(body, this.camioneta.width-60, this.camioneta.height-40);
+        shape.setFriction(1);
+        shape.setCollisionType(tipoCamioneta);
         this.space.addShape(shape);
         this.addChild(this.camioneta);
+
+        //Cargar animal
+        this.animal = new Rana(this, cc.p(size.width*0.15 , size.height*0.9));
 
         cc.eventManager.addListener({
             event: cc.EventListener.KEYBOARD,
@@ -54,11 +62,11 @@ var GameLayer = cc.Layer.extend({
                     return;*/
                 instancia.keyPulsada = keyCode;
                 if( keyCode == 37 && (new Date().getTime() - instancia.tiempo) > 200 ){
-                     instancia.camioneta.body.applyImpulse(cp.v(-100,0), cp.v(0,0));
+                     instancia.camioneta.body.applyImpulse(cp.v(-50, 0), cp.v(0,0));
                      instancia.tiempo = new Date().getTime();
                 }
                 if( keyCode == 39 && (new Date().getTime() - instancia.tiempo) > 200 ){
-                       instancia.camioneta.body.applyImpulse(cp.v(150,0), cp.v(0,0));
+                       instancia.camioneta.body.applyImpulse(cp.v(85,0), cp.v(0,0));
                        instancia.tiempo = new Date().getTime();
                 }
             },
@@ -71,9 +79,16 @@ var GameLayer = cc.Layer.extend({
         }, this);
 
         this.scheduleUpdate();
+
+        this.space.addCollisionHandler(tipoAnimal, tipoCamioneta,  null, null, this.colisionAnimalConJugador.bind(this), null);
+
+
+
         return true;
     },update:function (dt) {
         this.space.step(dt);
+
+        this.animal.update(dt);
 
         var posicionCamioneta = this.camioneta.getBody().p.x-200;
         this.setPosition(cc.p(- posicionCamioneta,0));
@@ -122,7 +137,14 @@ var GameLayer = cc.Layer.extend({
         }
 
 
-    }
+    }, colisionAnimalConJugador:function(arbiter, space) {
+         if (this.animal.saltando == true)
+             {
+                this.animal.terminaSalto();
+            }
+       }
+
+
 });
 
 var GameScene = cc.Scene.extend({

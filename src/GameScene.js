@@ -16,6 +16,8 @@ var GameLayer = cc.Layer.extend({
     camioneta:null,
     tiempo:0,
     animal:null,
+    widthCamioneta:0,
+    heightCamioneta:0,
     ctor:function () {
         this._super();
         var size = cc.winSize;
@@ -34,7 +36,7 @@ var GameLayer = cc.Layer.extend({
         this.space.damping = 0.5;
 
         // Depuración
-      /*  this.depuracion = new cc.PhysicsDebugNode(this.space);
+       /*this.depuracion = new cc.PhysicsDebugNode(this.space);
         this.addChild(this.depuracion, 10);*/
 
         this.cargarMapa();
@@ -42,7 +44,9 @@ var GameLayer = cc.Layer.extend({
         //Cargar camioneta
         this.camioneta = new cc.PhysicsSprite("#camioneta.png");
         var body = new cp.Body(1, cp.momentForBox(1, 0, this.camioneta.width-20, this.camioneta.height-20));
-        body.p = cc.p(size.width*0.2 , size.height*0.7);
+        this.widthCamioneta = size.width*0.35;
+        this.heightCamioneta = size.height*0.7;
+        body.p = cc.p(this.widthCamioneta, this.heightCamioneta);
         this.camioneta.setBody(body);
         this.space.addBody(body);
         var shape = new cp.BoxShape(body, this.camioneta.width-60, this.camioneta.height-40);
@@ -52,7 +56,7 @@ var GameLayer = cc.Layer.extend({
         this.addChild(this.camioneta);
 
         //Cargar animal
-        this.animal = new Rana(this, cc.p(size.width*0.15 , size.height*0.9));
+        this.animal = new Rana(this, cc.p(size.width*0.3 , size.height*0.9));
 
         cc.eventManager.addListener({
             event: cc.EventListener.KEYBOARD,
@@ -93,13 +97,18 @@ var GameLayer = cc.Layer.extend({
 
         var posicionCamioneta = this.camioneta.getBody().p.x-200;
         this.setPosition(cc.p(- posicionCamioneta,0));
-        var bodiCamioneta = this.camioneta.body;
-        if(bodiCamioneta.getVel().x > 200)
-            bodiCamioneta.setVel(cp.v(200, bodiCamioneta.getVel().y))
-        if(bodiCamioneta.getVel().x < -100)
-             bodiCamioneta.setVel(cp.v(-100, bodiCamioneta.getVel().y))
+        var bodyCamioneta = this.camioneta.body;
+        if(bodyCamioneta.getVel().x > 200)
+            bodyCamioneta.setVel(cp.v(200, bodyCamioneta.getVel().y))
+        if(bodyCamioneta.getVel().x < -100)
+             bodyCamioneta.setVel(cp.v(-100, bodyCamioneta.getVel().y))
 
-       /* var capaControles = this.getParent().getChildByTag(idCapaControles);
+        // Caída, sí cae vuelve a la posición inicial
+        if( this.camioneta.body.p.y < -100){
+            this.camioneta.body.p = cc.p(this.widthCamioneta , this.heightCamioneta);
+        }
+
+        /* var capaControles = this.getParent().getChildByTag(idCapaControles);
 
         if ( capaControles.monedas >= 3){
             console.log("Nivel: ", nivelActual);
@@ -136,22 +145,16 @@ var GameLayer = cc.Layer.extend({
                 this.space.addStaticShape(shapeSuelo);
             }
         }
-
-
     }, colisionAnimalConJugador:function(arbiter, space) {
          if (this.animal.saltando == true)
-             {
+            {
                 this.animal.terminaSalto();
             }
-
     }, colisionAnimalConSuelo:function(arbiter, space) {
             /* cc.director.pause();
              cc.audioEngine.stopMusic();*/
              cc.director.runScene(new GameScene());
     }
-
-
-
 });
 
 var GameScene = cc.Scene.extend({

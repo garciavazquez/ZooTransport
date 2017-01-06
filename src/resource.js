@@ -14,6 +14,8 @@ var res = {
     camioneta_plist : "res/camioneta.plist",
     rana: "res/rana.png",
     rana_plist : "res/rana.plist",
+    cuervo: "res/cuervo.png",
+    cuervo_plist : "res/cuervo.plist",
 };
 
 var g_resources = [];

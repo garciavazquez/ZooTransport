@@ -4,6 +4,7 @@ var nivelActual = 0;
 var tipoCamioneta = 1;
 var tipoSuelo = 2;
 var tipoAnimal = 3;
+var tipoMeta = 4;
 
 var idCapaJuego = 1;
 
@@ -18,17 +19,20 @@ var GameLayer = cc.Layer.extend({
     animal:null,
     widthCamioneta:0,
     heightCamioneta:0,
+    puentes:[],
+    metas:[],
     ctor:function () {
         this._super();
         var size = cc.winSize;
 
         this.tiempo = new Date().getTime();
 
-
         //cache
         cc.spriteFrameCache.addSpriteFrames(res.camioneta_plist);
         cc.spriteFrameCache.addSpriteFrames(res.rana_plist);
         cc.spriteFrameCache.addSpriteFrames(res.cuervo_plist);
+        cc.spriteFrameCache.addSpriteFrames(res.puente_plist);
+        cc.spriteFrameCache.addSpriteFrames(res.meta_plist);
 
         // Inicializar Space
         this.space = new cp.Space();
@@ -36,7 +40,7 @@ var GameLayer = cc.Layer.extend({
         this.space.damping = 0.5;
 
         // Depuración
-       /*this.depuracion = new cc.PhysicsDebugNode(this.space);
+        /*this.depuracion = new cc.PhysicsDebugNode(this.space);
         this.addChild(this.depuracion, 10);*/
 
         this.cargarMapa();
@@ -86,14 +90,18 @@ var GameLayer = cc.Layer.extend({
 
         this.space.addCollisionHandler(tipoAnimal, tipoCamioneta,  null, null, this.colisionAnimalConJugador.bind(this), null);
         this.space.addCollisionHandler(tipoAnimal, tipoSuelo,  null, null, this.colisionAnimalConSuelo.bind(this), null);
-
-
+        this.space.addCollisionHandler(tipoCamioneta, tipoMeta, null, this.colisionCamionetaConMeta.bind(this), null, null);
 
         return true;
     },update:function (dt) {
         this.space.step(dt);
 
         this.animal.update(dt);
+
+        for(var i = 0; i < this.puentes.length; i++) {
+            var puente = this.puentes[i];
+                puente.moverAutomaticamente();
+        }
 
         var posicionCamioneta = this.camioneta.getBody().p.x-200;
         this.setPosition(cc.p(- posicionCamioneta,0));
@@ -107,14 +115,6 @@ var GameLayer = cc.Layer.extend({
         if( this.camioneta.body.p.y < -100){
             this.camioneta.body.p = cc.p(this.widthCamioneta , this.heightCamioneta);
         }
-
-        /* var capaControles = this.getParent().getChildByTag(idCapaControles);
-
-        if ( capaControles.monedas >= 3){
-            console.log("Nivel: ", nivelActual);
-            nivelActual = nivelActual + 1;
-            cc.director.runScene(new GameScene());
-        }*/
     }, cargarMapa:function () {
         this.mapa = new cc.TMXTiledMap(niveles[nivelActual]);
         // Añadirlo a la Layer
@@ -145,15 +145,32 @@ var GameLayer = cc.Layer.extend({
                 this.space.addStaticShape(shapeSuelo);
             }
         }
+
+        /*var grupoPuentes = this.mapa.getObjectGroup("Puentes");
+        var puentesArray = grupoPuentes.getObjects();
+        for(var i=0; i<puentesArray.length;i++){
+            var puente = new Puente(this,
+                cc.p(puentesArray[i]["x"], puentesArray[i]["y"]));
+            this.puentes.push(puente);
+        }*/
+
+        /*var grupoMetas = this.mapa.getObjectGroup("Meta");
+        var metasArray = grupoMetas.getObjects();
+        for(var i=0; i<metasArray.length;i++){
+            var meta = new Meta(this,
+                cc.p(metasArray[i]["x"], metasArray[i]["y"]));
+            this.metas.push(meta);
+        }*/
     }, colisionAnimalConJugador:function(arbiter, space) {
          if (this.animal.saltando == true)
-            {
-                this.animal.terminaSalto();
-            }
+            this.animal.terminaSalto();
     }, colisionAnimalConSuelo:function(arbiter, space) {
             /* cc.director.pause();
              cc.audioEngine.stopMusic();*/
              cc.director.runScene(new GameScene());
+    }, colisionCamionetaConMeta:function(arbiter, space){
+        nivelActual = nivelActual +1;
+        cc.director.runScene(new GameScene());
     }
 });
 

@@ -15,6 +15,8 @@
         "src/app.js",
         "src/GameScene.js",
         "src/Rana.js",
-        "src/Cuervo.js"
+        "src/Cuervo.js",
+        "src/Puente.js",
+        "src/Meta.js"
     ]
 }

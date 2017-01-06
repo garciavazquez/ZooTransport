@@ -62,7 +62,6 @@ ctor:function (gameLayer, posicion) {
 
     gameLayer.addChild(this.sprite,10);
 
-
 }, update:function (dt) {
 
       // aumentar el tiempo que ha pasado desde el ultimo salto

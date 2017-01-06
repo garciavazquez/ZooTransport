@@ -16,6 +16,10 @@ var res = {
     rana_plist : "res/rana.plist",
     cuervo: "res/cuervo.png",
     cuervo_plist : "res/cuervo.plist",
+    puente_png : "res/puente.png",
+    puente_plist : "res/puente.plist",
+    meta_png : "res/meta.png",
+    meta_plist : "res/meta.png"
 };
 
 var g_resources = [];

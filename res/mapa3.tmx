@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="150" height="20" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="100" height="20" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="tiles32" tilewidth="32" tileheight="32">
   <image source="tiles32.png" width="448" height="224"/>
  </tileset>
- <layer name="PatronesFondo" width="150" height="20">
+ <layer name="PatronesFondo" width="100" height="20">
   <data encoding="base64" compression="zlib">
-   eJztw0ENAAAMA6FTVf/SJmMfSFg1VVVVVVVVVVVVVVV9fhEIeO8=
+   eJztwwENAAAMw6Cqmn9pF3JIWDVVVVVVVVVVff4AuXyl8A==
   </data>
  </layer>
- <layer name="PatronesTerreno" width="150" height="20">
+ <layer name="PatronesTerreno" width="100" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt1MsKwjAQQNHgAwXduND//1STRaFIxrFqKdVz4C7b5jG0FAAAAAAAAAAAAN5x7sT6HWu7pFPQdkKH4Pv/Plft/J+dW3Y3nxbdy+Map773VrskRXOVPTfuWtt0+tW5anfR2++4fXnt/Oes3Uv2T5hrjd+Yq6js7Jcq2nPW8PzS87KG5pyrO5zkEDU=
+   eJzt0TsKgDAQQMHgBwVtLPT+RzUWFooYCEggzsArF5bdEAAAAAAAAOoyP0Q5f//HGGtf6j5uuO1T6z+OOzeJ+tgWWwq2huv/UzuXasrsnC9959x2smkHlg==
   </data>
  </layer>
- <objectgroup name="Suelos" width="150" height="20">
+ <objectgroup name="Suelos" width="100" height="20">
   <object x="3" y="512">
    <polyline points="0,0 156,0 157,93 1212,95 1212,124"/>
   </object>
   <object x="1665" y="636">
    <polyline points="0,0 -1,-29 60,-28 93,-61 383,-61 415,-93 1404,-92 1437,-61 1692,-61 1725,-93 2109,-93 2140,-125 2397,-124 2399,0"/>
   </object>
-  <object x="4256" y="639">
-   <polyline points="0,0 0,-127 349,-127 384,-95 541,-96"/>
-  </object>
+ </objectgroup>
+ <objectgroup name="Puentes" width="100" height="20">
+  <object x="1223" y="608" width="429" height="16"/>
+ </objectgroup>
+ <objectgroup name="Meta" width="100" height="20">
+  <object x="3114" y="485" width="74" height="72"/>
  </objectgroup>
 </map>

@@ -10,18 +10,16 @@
  </layer>
  <layer name="PatronesTerreno" width="150" height="20">
   <data encoding="base64" compression="zlib">
-   eJztmMsKgzAUBYMPWnDlQv//U6uI1IXmxsTYYzMDs74mmaDoHAAAAAAAAAAAgM17sjWsDF+3PzUoMzc1TvaJDu64rXlGvSN8Odqj1Sfd26ua8rXlmwELIefgu7dKXN3U3vqtGXDuHNTbytXUdv11wIzSiTkH1bZyN3XGLsInYX0zpdzbJtKYPfetYVWlqX/vSun+pu75r5+ZrhZUmyqlK+ufmJqh7xrVpkrpCu+XrjCHdIU5LKGrD47BQmA=
+   eJzt08EKgkAUhlGxhUJtXNj7P2pCuJFyruO1UM6Bfzs4+tk0AAAAAAAAAAAA1Liv7PHH5zqrflpb2No7/7bSmfO6468Yoqu3SA+RPacNhdV0VTpz3ph0j72NXq2r2j4iPWTtyK4yt2x0S2d7m74lLOv/+nUfV+/qU2fRb/oCsQMOyQ==
   </data>
  </layer>
  <objectgroup name="Suelos" width="150" height="20">
-  <object x="11" y="415">
-   <polyline points="0,0 405,1 405,97 1399,99 1399,291"/>
+  <object x="3" y="511">
+   <polyline points="0,0 251,0 252,95 1660,97 1692,64 2108,64 2140,32 2684,32 2717,-1 2972,0 2975,129"/>
   </object>
-  <object x="1407" y="511">
-   <polyline points="0,0 323,0 419,-95 639,-95 769,-223 992,-223 1121,-95 1569,-96 1569,127"/>
-  </object>
-  <object x="3392" y="640">
-   <polyline points="0,0 0,-224 287,-224 479,-416 991,-417 1119,-288 1151,-288 1248,-385 1404,-384"/>
+  <object x="3392" y="637">
+   <polyline points="0,0 0,-125 317,-127 351,-96 927,-96 959,-61 1056,-64 1087,-31 1404,-31"/>
   </object>
  </objectgroup>
+ <objectgroup name="Capa de Objetos 2" width="150" height="20"/>
 </map>

@@ -25,7 +25,7 @@ var MenuLayer = cc.Layer.extend({
         // creo el menú pasándole los botones
         var menu = new cc.Menu(menuBotonJugar);
         // Asigno posición central
-        menu.setPosition(cc.p(size.width * 0.29, size.height * 0.58));
+        menu.setPosition(cc.p(size.width * 0.29, size.height * 0.40));
         // Añado el menú a la escena
         this.addChild(menu);
 

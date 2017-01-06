@@ -81,6 +81,7 @@ var GameLayer = cc.Layer.extend({
         this.scheduleUpdate();
 
         this.space.addCollisionHandler(tipoAnimal, tipoCamioneta,  null, null, this.colisionAnimalConJugador.bind(this), null);
+        this.space.addCollisionHandler(tipoAnimal, tipoSuelo,  null, null, this.colisionAnimalConSuelo.bind(this), null);
 
 
 
@@ -142,7 +143,14 @@ var GameLayer = cc.Layer.extend({
              {
                 this.animal.terminaSalto();
             }
-       }
+
+    }, colisionAnimalConSuelo:function(arbiter, space) {
+            /* cc.director.pause();
+             cc.audioEngine.stopMusic();*/
+             this.getParent().addChild(new GameLayer());
+             this.removeFromParent();
+    }
+
 
 
 });

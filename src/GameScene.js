@@ -6,7 +6,6 @@ var tipoSuelo = 2;
 var tipoAnimal = 3;
 
 var idCapaJuego = 1;
-var idCapaControles = 2;
 
 var GameLayer = cc.Layer.extend({
     space:null,
@@ -29,6 +28,7 @@ var GameLayer = cc.Layer.extend({
         //cache
         cc.spriteFrameCache.addSpriteFrames(res.camioneta_plist);
         cc.spriteFrameCache.addSpriteFrames(res.rana_plist);
+        cc.spriteFrameCache.addSpriteFrames(res.cuervo_plist);
 
         // Inicializar Space
         this.space = new cp.Space();
@@ -116,7 +116,7 @@ var GameLayer = cc.Layer.extend({
             cc.director.runScene(new GameScene());
         }*/
     }, cargarMapa:function () {
-        this.mapa = new cc.TMXTiledMap(res.mapa1_tmx);
+        this.mapa = new cc.TMXTiledMap(niveles[nivelActual]);
         // Añadirlo a la Layer
         this.addChild(this.mapa);
         // Ancho del mapa
@@ -153,8 +153,7 @@ var GameLayer = cc.Layer.extend({
     }, colisionAnimalConSuelo:function(arbiter, space) {
             /* cc.director.pause();
              cc.audioEngine.stopMusic();*/
-             this.getParent().addChild(new GameLayer());
-             this.removeFromParent();
+             cc.director.runScene(new GameScene());
     }
 });
 

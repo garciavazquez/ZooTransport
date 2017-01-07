@@ -100,7 +100,9 @@ var GameLayer = cc.Layer.extend({
        // this.puente.moverAutomaticamente();
 
         var posicionCamioneta = this.camioneta.getBody().p.x-200;
-        this.setPosition(cc.p(- posicionCamioneta,0));
+        if(-this.getPosition().x < (this.mapaAncho - cc.winSize.width))
+            this.setPosition(cc.p(- posicionCamioneta,0));
+
         var bodyCamioneta = this.camioneta.body;
         if(bodyCamioneta.getVel().x > 200)
             bodyCamioneta.setVel(cp.v(200, bodyCamioneta.getVel().y))

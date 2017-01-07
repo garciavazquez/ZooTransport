@@ -19,7 +19,9 @@ var res = {
     puente_png : "res/puente.png",
     puente_plist : "res/puente.plist",
     meta_png : "res/meta.png",
-    meta_plist : "res/meta.plist"
+    meta_plist : "res/meta.plist",
+    meteorito_png : "res/meteorito.png",
+    meteorito_plist : "res/meteorito.plist"
 };
 
 var g_resources = [];

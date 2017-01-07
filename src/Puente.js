@@ -25,20 +25,17 @@ ctor:function (gameLayer, posicion) {
     // añadir sprite a la capa
 
     gameLayer.addChild(this.sprite,10);
-}, update:function (dt) {
-
-
 },  moverAutomaticamente: function(){ //CAMBIAR ESTO PARA QUE SEA EN VERTICAL
     // Velocidad baja ha colisionado con algo,
-    if ( this.body.vx < 3 &&  this.body.vx > -3 ) {
-        if (this.direccion == "derecha"){
-            this.direccion = "izquierda";
-            this.body.p.x = this.body.p.x -10; // Para que salga de la colisión
-            this.sprite.scaleX = 1;
+    if ( this.body.vy < 3 &&  this.body.vy > -3 ) {
+        if (this.direccion == "arriba"){
+            this.direccion = "abajo";
+            this.body.p.y = this.body.p.y -10; // Para que salga de la colisión
+            this.sprite.scaleY = 1;
         } else {
-            this.direccion = "derecha";
-            this.body.p.x = this.body.p.x + 10; // Para que salga de la zona de colisión
-            this.sprite.scaleX = -1;
+            this.direccion = "arriba";
+            this.body.p.y = this.body.p.y + 10; // Para que salga de la zona de colisión
+            this.sprite.scaleY = -1;
         }
     }
 }

@@ -17,6 +17,7 @@
         "src/Rana.js",
         "src/Cuervo.js",
         "src/Puente.js",
-        "src/Meta.js"
+        "src/Meta.js",
+        "src/Meteorito.js"
     ]
 }

@@ -169,12 +169,14 @@ var GameScene = cc.Scene.extend({
     onEnter:function () {
         this._super();
         cc.director.resume();
+
         //cache
         cc.spriteFrameCache.addSpriteFrames(res.camioneta_plist);
         cc.spriteFrameCache.addSpriteFrames(res.rana_plist);
         cc.spriteFrameCache.addSpriteFrames(res.cuervo_plist);
         cc.spriteFrameCache.addSpriteFrames(res.puente_plist);
         cc.spriteFrameCache.addSpriteFrames(res.meta_plist);
+
         var layer = new GameLayer();
         this.addChild(layer);
 

@@ -4,7 +4,7 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>puente1.png</key>
+			<key>puente.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{0,0},{221,12}}</string>

@@ -64,7 +64,6 @@ var GameLayer = cc.Layer.extend({
             default: this.animal = new Rana(this, cc.p(this.widthAnimal, this.heightAnimal)); break;
         }
 
-
         cc.eventManager.addListener({
             event: cc.EventListener.KEYBOARD,
             onKeyPressed:  function(keyCode, event){
@@ -114,7 +113,7 @@ var GameLayer = cc.Layer.extend({
              bodyCamioneta.setVel(cp.v(-100, bodyCamioneta.getVel().y))
 
         // Caída, sí cae vuelve a la posición inicial
-        if( this.camioneta.body.p.y < -100){
+        if( this.camioneta.body.p.y < -100 || this.animal.body.p.y < -100){
             this.camioneta.body.p = cc.p(this.widthCamioneta , this.heightCamioneta);
             this.animal.body.p = cc.p(this.widthAnimal, this.heightAnimal);
         }

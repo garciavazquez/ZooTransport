@@ -5,16 +5,6 @@ var Puente = cc.Class.extend({
 ctor:function (gameLayer, posicion) {
     this.gameLayer = gameLayer;
 
-    // Crear animación
-    var framesAnimacion = [];
-
-    var str = "puente1.png";
-    var frame = cc.spriteFrameCache.getSpriteFrame(str);
-    framesAnimacion.push(frame);
-
-    var animacion = new cc.Animation(framesAnimacion, 0.2);
-    var actionAnimacionBucle = new cc.RepeatForever(new cc.Animate(animacion));
-
     // Crear Sprite - Cuerpo y forma
     this.sprite = new cc.PhysicsSprite("#puente1.png");
 
@@ -27,15 +17,12 @@ ctor:function (gameLayer, posicion) {
     gameLayer.space.addBody(this.body);
 
     // forma
-    this.shape = new cp.BoxShape(this.body, this.sprite.getContentSize().width - 16, this.sprite.getContentSize().height - 16);
+    this.shape = new cp.BoxShape(this.body, this.sprite.getContentSize().width, this.sprite.getContentSize().height);
     //this.shape.setCollisionType(tipoAnimal);
     this.shape.setFriction(4);
     // agregar forma dinamica
     gameLayer.space.addShape(this.shape);
     // añadir sprite a la capa
-
-    // ejecutar la animación
-    this.sprite.runAction(this.actionAnimacionBucle);
 
     gameLayer.addChild(this.sprite,10);
 }, update:function (dt) {

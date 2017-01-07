@@ -19,8 +19,8 @@ var GameLayer = cc.Layer.extend({
     animal:null,
     widthCamioneta:0,
     heightCamioneta:0,
-    puentes:[],
-    metas:[],
+    puente:null,
+    meta:null,
     ctor:function () {
         this._super();
         var size = cc.winSize;
@@ -40,9 +40,9 @@ var GameLayer = cc.Layer.extend({
 
         //Cargar camioneta
         this.camioneta = new cc.PhysicsSprite("#camioneta.png");
-        var body = new cp.Body(1, cp.momentForBox(1, 0, this.camioneta.width-20, this.camioneta.height-20));
+        var body = new cp.Body(10, cp.momentForBox(1, 0, this.camioneta.width-20, this.camioneta.height-20));
         this.widthCamioneta = size.width*0.35;
-        this.heightCamioneta = size.height*0.4;
+        this.heightCamioneta = size.height*0.2;
         body.p = cc.p(this.widthCamioneta, this.heightCamioneta);
         this.camioneta.setBody(body);
         this.space.addBody(body);
@@ -68,12 +68,12 @@ var GameLayer = cc.Layer.extend({
                 /*if(instancia.keyPulsada == keyCode)
                     return;*/
                 instancia.keyPulsada = keyCode;
-                if( keyCode == 37 && (new Date().getTime() - instancia.tiempo) > 200 ){
-                     instancia.camioneta.body.applyImpulse(cp.v(-50, 0), cp.v(0,0));
+                if( keyCode == 37 && (new Date().getTime() - instancia.tiempo) > 100 ){
+                     instancia.camioneta.body.applyImpulse(cp.v(-150, 0), cp.v(0,0));
                      instancia.tiempo = new Date().getTime();
                 }
-                if( keyCode == 39 && (new Date().getTime() - instancia.tiempo) > 200 ){
-                       instancia.camioneta.body.applyImpulse(cp.v(85,0), cp.v(0,0));
+                if( keyCode == 39 && (new Date().getTime() - instancia.tiempo) > 100 ){
+                       instancia.camioneta.body.applyImpulse(cp.v(300,0), cp.v(0,0));
                        instancia.tiempo = new Date().getTime();
                 }
             },
@@ -97,10 +97,7 @@ var GameLayer = cc.Layer.extend({
 
         this.animal.update(dt);
 
-        for(var i = 0; i < this.puentes.length; i++) {
-            var puente = this.puentes[i];
-                puente.moverAutomaticamente();
-        }
+       // this.puente.moverAutomaticamente();
 
         var posicionCamioneta = this.camioneta.getBody().p.x-200;
         this.setPosition(cc.p(- posicionCamioneta,0));
@@ -145,17 +142,13 @@ var GameLayer = cc.Layer.extend({
             }
         }
 
-        /*var grupoPuentes = this.mapa.getObjectGroup("Puentes");
+       /* var grupoPuentes = this.mapa.getObjectGroup("Puentes");
         var puentesArray = grupoPuentes.getObjects();
-        for(var i=0; i<puentesArray.length;i++){
-            var puente = new Puente(this,
-                cc.p(puentesArray[i]["x"], puentesArray[i]["y"]));
-            this.puentes.push(puente);
-        }*/
+        this.puente = new Puente(this,cc.p(puentesArray[0]["x"], puentesArray[0]["y"]));*/
 
         var grupoMetas = this.mapa.getObjectGroup("Meta");
         var arrayMeta = grupoMetas.getObjects();
-        var meta = new Meta(this, cc.p(arrayMeta[0]["x"], arrayMeta[0]["y"]));
+        this.meta = new Meta(this, cc.p(arrayMeta[0]["x"], arrayMeta[0]["y"]));
 
     }, colisionAnimalConJugador:function(arbiter, space) {
          if (this.animal.saltando == true)

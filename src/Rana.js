@@ -55,8 +55,6 @@ ctor:function (gameLayer, posicion) {
     this.shape.setFriction(4);
     // agregar forma dinamica
     gameLayer.space.addShape(this.shape);
-    // añadir sprite a la capa
-
     // ejecutar la animación
     this.sprite.runAction(this.actionAnimacionParado);
 

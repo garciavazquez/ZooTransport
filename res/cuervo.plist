@@ -11,11 +11,11 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{173,98}</string>
+                <string>{60,41}</string>
                 <key>spriteSourceSize</key>
-                <string>{173,98}</string>
+                <string>{60,41}</string>
                 <key>textureRect</key>
-                <string>{{1,109},{173,98}}</string>
+                <string>{{1,1},{60,41}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -26,11 +26,11 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{171,114}</string>
+                <string>{60,38}</string>
                 <key>spriteSourceSize</key>
-                <string>{171,114}</string>
+                <string>{60,38}</string>
                 <key>textureRect</key>
-                <string>{{1,209},{171,114}}</string>
+                <string>{{1,44},{60,38}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -41,11 +41,11 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{173,106}</string>
+                <string>{60,35}</string>
                 <key>spriteSourceSize</key>
-                <string>{173,106}</string>
+                <string>{60,35}</string>
                 <key>textureRect</key>
-                <string>{{1,1},{173,106}}</string>
+                <string>{{1,84},{60,35}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -61,9 +61,9 @@
             <key>realTextureFileName</key>
             <string>cuervo.png</string>
             <key>size</key>
-            <string>{175,324}</string>
+            <string>{62,120}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:8f718063ef6a58fb084edbf5c1d2629a:746da12cfa52443d7bc5bbac6b48d7ea:c098b68adddc512622e0d3dbb5371d32$</string>
+            <string>$TexturePacker:SmartUpdate:689db56d92bf55954f2894eafe830ef3:8579a30bd939fb564c0d2571915cc025:c098b68adddc512622e0d3dbb5371d32$</string>
             <key>textureFileName</key>
             <string>cuervo.png</string>
         </dict>

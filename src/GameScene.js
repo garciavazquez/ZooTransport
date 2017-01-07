@@ -27,13 +27,6 @@ var GameLayer = cc.Layer.extend({
 
         this.tiempo = new Date().getTime();
 
-        //cache
-        cc.spriteFrameCache.addSpriteFrames(res.camioneta_plist);
-        cc.spriteFrameCache.addSpriteFrames(res.rana_plist);
-        cc.spriteFrameCache.addSpriteFrames(res.cuervo_plist);
-        cc.spriteFrameCache.addSpriteFrames(res.puente_plist);
-        cc.spriteFrameCache.addSpriteFrames(res.meta_plist);
-
         // Inicializar Space
         this.space = new cp.Space();
         this.space.gravity = cp.v(0, -350);
@@ -49,7 +42,7 @@ var GameLayer = cc.Layer.extend({
         this.camioneta = new cc.PhysicsSprite("#camioneta.png");
         var body = new cp.Body(1, cp.momentForBox(1, 0, this.camioneta.width-20, this.camioneta.height-20));
         this.widthCamioneta = size.width*0.35;
-        this.heightCamioneta = size.height*0.7;
+        this.heightCamioneta = size.height*0.4;
         body.p = cc.p(this.widthCamioneta, this.heightCamioneta);
         this.camioneta.setBody(body);
         this.space.addBody(body);
@@ -60,7 +53,13 @@ var GameLayer = cc.Layer.extend({
         this.addChild(this.camioneta);
 
         //Cargar animal
-        this.animal = new Rana(this, cc.p(size.width*0.3 , size.height*0.9));
+        switch (nivelActual)
+        {
+            case 0: this.animal = new Rana(this, cc.p(size.width*0.3 , size.height*0.6)); break;
+            case 1: this.animal = new Cuervo(this, cc.p(size.width*0.3 , size.height*0.6)); break;
+            default: this.animal = new Rana(this, cc.p(size.width*0.3 , size.height*0.6)); break;
+        }
+
 
         cc.eventManager.addListener({
             event: cc.EventListener.KEYBOARD,
@@ -154,20 +153,17 @@ var GameLayer = cc.Layer.extend({
             this.puentes.push(puente);
         }*/
 
-        /*var grupoMetas = this.mapa.getObjectGroup("Meta");
-        var metasArray = grupoMetas.getObjects();
-        for(var i=0; i<metasArray.length;i++){
-            var meta = new Meta(this,
-                cc.p(metasArray[i]["x"], metasArray[i]["y"]));
-            this.metas.push(meta);
-        }*/
+        var grupoMetas = this.mapa.getObjectGroup("Meta");
+        var arrayMeta = grupoMetas.getObjects();
+        var meta = new Meta(this, cc.p(arrayMeta[0]["x"], arrayMeta[0]["y"]));
+
     }, colisionAnimalConJugador:function(arbiter, space) {
          if (this.animal.saltando == true)
             this.animal.terminaSalto();
     }, colisionAnimalConSuelo:function(arbiter, space) {
             /* cc.director.pause();
              cc.audioEngine.stopMusic();*/
-             cc.director.runScene(new GameScene());
+            cc.director.runScene(new GameScene());
     }, colisionCamionetaConMeta:function(arbiter, space){
         nivelActual = nivelActual +1;
         cc.director.runScene(new GameScene());
@@ -178,7 +174,15 @@ var GameScene = cc.Scene.extend({
     onEnter:function () {
         this._super();
         cc.director.resume();
+        //cache
+        cc.spriteFrameCache.addSpriteFrames(res.camioneta_plist);
+        cc.spriteFrameCache.addSpriteFrames(res.rana_plist);
+        cc.spriteFrameCache.addSpriteFrames(res.cuervo_plist);
+        cc.spriteFrameCache.addSpriteFrames(res.puente_plist);
+        cc.spriteFrameCache.addSpriteFrames(res.meta_plist);
         var layer = new GameLayer();
         this.addChild(layer);
+
+
     }
 });

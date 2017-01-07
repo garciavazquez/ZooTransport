@@ -19,7 +19,7 @@ var res = {
     puente_png : "res/puente.png",
     puente_plist : "res/puente.plist",
     meta_png : "res/meta.png",
-    meta_plist : "res/meta.png"
+    meta_plist : "res/meta.plist"
 };
 
 var g_resources = [];

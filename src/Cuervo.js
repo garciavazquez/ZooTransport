@@ -1,41 +1,28 @@
-var Rana = cc.Class.extend({
+var Cuervo = cc.Class.extend({
     tiempoUtimoSalto:0,
     tiempoEntreSaltos:0,
     gameLayer:null,
     sprite:null,
     shape:null,
     saltando:false,
-    actionAnimacionParado:null,
-    actionAnimacionSalto:null,
+    actionAnimacion:null,
 ctor:function (gameLayer, posicion) {
     this.gameLayer = gameLayer;
     this.tiempoEntreSaltos = 4 + Math.floor(Math.random() * 2);
     // Crear animación
    var framesAnimacion = [];
-
-   var str = "rana1.png";
-   var frame = cc.spriteFrameCache.getSpriteFrame(str);
-   framesAnimacion.push(frame);
-   var str = "rana3.png";
-   var frame = cc.spriteFrameCache.getSpriteFrame(str);
-   framesAnimacion.push(frame);
-   var animacionParado = new cc.Animation(framesAnimacion, 0.2);
-   this.actionAnimacionParado =
-           new cc.RepeatForever(new cc.Animate(animacionParado));
-    var framesAnimacion = [];
-    var str = "rana4.png";
+   for (var i=1; i<=3; i++){
+    var str = "cuervo" + i + ".png";
     var frame = cc.spriteFrameCache.getSpriteFrame(str);
     framesAnimacion.push(frame);
-    var str = "rana2.png";
-    var frame = cc.spriteFrameCache.getSpriteFrame(str);
-    framesAnimacion.push(frame);
-    var animacionSalto = new cc.Animation(framesAnimacion, 0.6);
+   }
 
-    this.actionAnimacionSalto =
-        new cc.RepeatForever(new cc.Animate(animacionSalto));
+   var animacion = new cc.Animation(framesAnimacion, 0.2);
+   this.actionAnimacion =
+           new cc.RepeatForever(new cc.Animate(animacion));
 
     // Crear Sprite - Cuerpo y forma
-    this.sprite = new cc.PhysicsSprite("#rana1.png");
+    this.sprite = new cc.PhysicsSprite("#cuervo1.png");
 
     this.body = new cp.Body(1, cp.momentForBox(0.1,
        this.sprite.getContentSize().width,
@@ -55,10 +42,9 @@ ctor:function (gameLayer, posicion) {
     this.shape.setFriction(4);
     // agregar forma dinamica
     gameLayer.space.addShape(this.shape);
-    // añadir sprite a la capa
 
     // ejecutar la animación
-    this.sprite.runAction(this.actionAnimacionParado);
+    this.sprite.runAction(this.actionAnimacion);
 
     gameLayer.addChild(this.sprite,10);
 
@@ -70,24 +56,20 @@ ctor:function (gameLayer, posicion) {
 
       // Saltan si el tiempo ha pasado
       if(this.tiempoUtimoSalto > this.tiempoEntreSaltos){
-
+         var impulsoX = 50 + Math.floor(Math.random() * 150);
+         var impulsoY = 500 + Math.floor(Math.random() * 200);
 
           // Colocar en angulo del cuerpo a 0
           this.body.setAngle(0);
-          this.sprite.stopAllActions();
-          this.sprite.runAction(this.actionAnimacionSalto);
-          this.body.applyImpulse(cp.v(0, 300), cp.v(0, 0));
+          this.body.applyImpulse(cp.v(impulsoX, impulsoY), cp.v(0, 0));
           this.tiempoUtimoSalto = 0;
           this.saltando = true;
+          this.tiempoEntreSaltos = 4 + Math.floor(Math.random() * 2);
 
       }
   }, terminaSalto:function () {
 
-          this.sprite.stopAllActions();
-          this.sprite.runAction(this.actionAnimacionParado);
           this.saltando = false;
-       }
-
-
+   }
 
 });

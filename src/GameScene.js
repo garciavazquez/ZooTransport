@@ -200,6 +200,8 @@ var GameScene = cc.Scene.extend({
         cc.spriteFrameCache.addSpriteFrames(res.meta_plist);
         cc.spriteFrameCache.addSpriteFrames(res.meteorito_plist);
 
+        cc.audioEngine.playMusic(res.musicabucle_wav, true);
+
         var layer = new GameLayer();
         this.addChild(layer);
 

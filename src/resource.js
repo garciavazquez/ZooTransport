@@ -21,7 +21,8 @@ var res = {
     meta_png : "res/meta.png",
     meta_plist : "res/meta.plist",
     meteorito_png : "res/meteorito.png",
-    meteorito_plist : "res/meteorito.plist"
+    meteorito_plist : "res/meteorito.plist",
+    musicabucle_wav : "res/musicabucle.wav"
 };
 
 var g_resources = [];

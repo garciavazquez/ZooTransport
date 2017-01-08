@@ -14,6 +14,7 @@ ctor:function (gameLayer, posicion) {
 
     // forma
     this.shape = new cp.BoxShape(body, this.sprite.width - 16, this.sprite.height - 16);
+
     this.shape.setCollisionType(tipoMeta);
     // forma estática
     gameLayer.space.addStaticShape(this.shape);

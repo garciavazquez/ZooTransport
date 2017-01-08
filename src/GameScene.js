@@ -181,9 +181,8 @@ var GameLayer = cc.Layer.extend({
 
        var grupoPuentes = this.mapa.getObjectGroup("Puentes");
        var puentesArray = grupoPuentes.getObjects();
-       if(puentesArray[0] != null)
-       {
-           this.puente = new Puente(this,cc.p(puentesArray[0]["x"], puentesArray[0]["y"]));
+       if(puentesArray[0] != null){
+           this.puente = new Puente(this, cc.p(puentesArray[0]["x"], puentesArray[0]["y"]));
        }
 
         var grupoMetas = this.mapa.getObjectGroup("Meta");

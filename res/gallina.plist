@@ -4,60 +4,74 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>tortuga1.png</key>
+			<key>gallina1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{67,0},{66,64}}</string>
+				<string>{{94,77},{72,68}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{66,64}}</string>
+				<string>{{5,3},{72,68}}</string>
 				<key>sourceSize</key>
-				<string>{66,69}</string>
+				<string>{82,75}</string>
 			</dict>
 
-			<key>tortuga2.png</key>
+			<key>gallina2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{67,65},{66,60}}</string>
+				<string>{{0,0},{97,76}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,6},{66,60}}</string>
+				<string>{{3,1},{97,76}}</string>
 				<key>sourceSize</key>
-				<string>{66,69}</string>
+				<string>{103,78}</string>
 			</dict>
 
-			<key>tortuga3.png</key>
+			<key>gallina3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,0},{66,67}}</string>
+				<string>{{93,147},{83,70}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{66,67}}</string>
+				<string>{{1,5},{83,70}}</string>
 				<key>sourceSize</key>
-				<string>{66,69}</string>
+				<string>{86,80}</string>
 			</dict>
 
-			<key>tortuga4.png</key>
+			<key>gallina4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{134,0},{61,62}}</string>
+				<string>{{0,147},{92,77}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{1,6},{61,62}}</string>
+				<string>{{4,1},{92,77}}</string>
 				<key>sourceSize</key>
-				<string>{66,69}</string>
+				<string>{100,80}</string>
+			</dict>
+
+			<key>gallina5.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,77},{93,69}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{1,2},{93,69}}</string>
+				<key>sourceSize</key>
+				<string>{95,74}</string>
 			</dict>
 
 		</dict>
@@ -67,9 +81,9 @@
 			<key>format</key>
 			<integer>2</integer>
 			<key>size</key>
-			<string>{256,128}</string>
+			<string>{256,256}</string>
 			<key>textureFileName</key>
-			<string>tortuga.png</string>
+			<string>sprites.png</string>
 			</dict>
 		</dict>
 </plist>

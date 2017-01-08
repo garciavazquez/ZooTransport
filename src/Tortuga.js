@@ -12,7 +12,7 @@ ctor:function (gameLayer, posicion) {
     // Crear animación
    var framesAnimacion = [];
    for (var i=1; i<=3; i++){
-    var str = "cuervo" + i + ".png";
+    var str = "tortuga" + i + ".png";
     var frame = cc.spriteFrameCache.getSpriteFrame(str);
     framesAnimacion.push(frame);
    }
@@ -22,7 +22,7 @@ ctor:function (gameLayer, posicion) {
            new cc.RepeatForever(new cc.Animate(animacion));
 
     // Crear Sprite - Cuerpo y forma
-    this.sprite = new cc.PhysicsSprite("#cuervo1.png");
+    this.sprite = new cc.PhysicsSprite("#tortuga1.png");
 
     this.body = new cp.Body(1, cp.momentForBox(0.1,
        this.sprite.getContentSize().width,
@@ -51,7 +51,7 @@ ctor:function (gameLayer, posicion) {
 
 }, update:function (dt) {
 
-      // aumentar el tiempo que ha pasado desde el ultimo salto
+     /* // aumentar el tiempo que ha pasado desde el ultimo salto
       this.tiempoUtimoSalto = this.tiempoUtimoSalto + dt;
 
       // Saltan si el tiempo ha pasado
@@ -66,10 +66,10 @@ ctor:function (gameLayer, posicion) {
           this.saltando = true;
           this.tiempoEntreSaltos = 4 + Math.floor(Math.random() * 2);
 
-      }
-  }, terminaSalto:function () {
+      }*/
+  }/*, terminaSalto:function () {
 
           this.saltando = false;
-   }
+   }*/
 
 });

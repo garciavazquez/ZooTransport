@@ -65,6 +65,7 @@ var GameLayer = cc.Layer.extend({
         {
             case 0: this.animal = new Rana(this, cc.p(this.widthAnimal, this.heightAnimal)); break;
             case 1: this.animal = new Cuervo(this, cc.p(this.widthAnimal, this.heightAnimal)); break;
+            case 2: this.animal = new Tortuga(this, cc.p(this.widthAnimal, this.heightAnimal)); break;
             default: this.animal = new Rana(this, cc.p(this.widthAnimal, this.heightAnimal)); break;
         }
 
@@ -131,7 +132,7 @@ var GameLayer = cc.Layer.extend({
 
         this.random = Math.random((this.camioneta.body.p.x) - this.camioneta.body.p.x + 50) + (this.camioneta.body.p.x + 50);
         if(this.tiempoEntreMeteoritos > this.tiempoUltimaCaida){
-            this.meteorito = new Meteorito(this, cc.p(this.random, this.mapa.getContentSize().height));
+            //this.meteorito = new Meteorito(this, cc.p(this.random, this.mapa.getContentSize().height));
             this.tiempoUltimaCaida = this.tiempoUltimaCaida + dt;
             this.tiempoEntreMeteoritos = 0;
             //console.log("Tiempo ultima caida", this.tiempoUltimaCaida);
@@ -222,6 +223,7 @@ var GameScene = cc.Scene.extend({
         cc.spriteFrameCache.addSpriteFrames(res.puente_plist);
         cc.spriteFrameCache.addSpriteFrames(res.meta_plist);
         cc.spriteFrameCache.addSpriteFrames(res.meteorito_plist);
+        cc.spriteFrameCache.addSpriteFrames(res.tortuga_plist);
 
         cc.audioEngine.playMusic(res.musicabucle_wav, true);
 

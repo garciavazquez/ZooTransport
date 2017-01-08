@@ -5,8 +5,7 @@ var tipoCamioneta = 1;
 var tipoSuelo = 2;
 var tipoAnimal = 3;
 var tipoMeta = 4;
-
-var idCapaJuego = 1;
+var tipoMeteorito = 5;
 
 var GameLayer = cc.Layer.extend({
     space:null,
@@ -23,6 +22,8 @@ var GameLayer = cc.Layer.extend({
     heightAnimal:0,
     puente:null,
     meta:null,
+    meteorito:null,
+    tiempoEntreMeteoritos:0,
     ctor:function () {
         this._super();
         var size = cc.winSize;
@@ -93,6 +94,8 @@ var GameLayer = cc.Layer.extend({
         this.space.addCollisionHandler(tipoAnimal, tipoCamioneta,  null, null, this.colisionAnimalConJugador.bind(this), null);
         this.space.addCollisionHandler(tipoAnimal, tipoSuelo,  null, null, this.colisionAnimalConSuelo.bind(this), null);
         this.space.addCollisionHandler(tipoCamioneta, tipoMeta, null, this.colisionCamionetaConMeta.bind(this), null, null);
+        this.space.addCollisionHandler(tipoMeteorito, tipoAnimal, null, null, this.colisionMeteoritoConAnimal.bind(this), null);
+        this.space.addCollisionHandler(tipoMeteorito, tipoCamioneta, null, null, this.colisionMeteoritoConCamioneta.bind(this), null);
 
         return true;
     },update:function (dt) {
@@ -117,6 +120,14 @@ var GameLayer = cc.Layer.extend({
             this.camioneta.body.p = cc.p(this.widthCamioneta , this.heightCamioneta);
             this.animal.body.p = cc.p(this.widthAnimal, this.heightAnimal);
         }
+
+       /* this.tiempoEntreMeteoritos = 4 + Math.floor(Math.random() * 3);
+        this.meteorito.update(dt);
+        this.random = Math.random()*(this.mapaAncho - 30) + 30
+        if(this.tiempoEntreMeteoritos > this.meteorito.tiempoUltimaCaida){
+            this.meteorito = new Meteorito(this, cc.p(this.mapa.getContentSize().height, this.random));
+        }*/
+
     }, cargarMapa:function () {
         this.mapa = new cc.TMXTiledMap(niveles[nivelActual]);
         // Añadirlo a la Layer
@@ -165,6 +176,10 @@ var GameLayer = cc.Layer.extend({
             cc.director.runScene(new GameScene());
     }, colisionCamionetaConMeta:function(arbiter, space){
         nivelActual = nivelActual +1;
+        cc.director.runScene(new GameScene());
+    }, colisionMeteoritoConAnimal:function(arbiter, space){
+        cc.director.runScene(new GameScene());
+    }, colisionMeteoritoConCamioneta:function(arbiter, space){
         cc.director.runScene(new GameScene());
     }
 });

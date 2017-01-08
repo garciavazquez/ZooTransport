@@ -22,11 +22,4 @@
   <object x="3106" y="422" width="74" height="72"/>
  </objectgroup>
  <objectgroup name="Puentes" width="100" height="20"/>
- <objectgroup name="Meteoritos" width="100" height="20">
-  <object x="642" y="34" width="60" height="60"/>
-  <object x="1184" y="36" width="60" height="60"/>
-  <object x="1664" y="36" width="60" height="60"/>
-  <object x="2178" y="34" width="60" height="60"/>
-  <object x="2976" y="34" width="60" height="60"/>
- </objectgroup>
 </map>

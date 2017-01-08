@@ -27,12 +27,4 @@
  <objectgroup name="Meta" width="100" height="20">
   <object x="3110" y="480" width="74" height="72"/>
  </objectgroup>
- <objectgroup name="Meteoritos" width="100" height="20">
-  <object x="578" y="36" width="60" height="60"/>
-  <object x="996" y="36" width="60" height="60"/>
-  <object x="1408" y="36" width="60" height="60"/>
-  <object x="1954" y="36" width="60" height="60"/>
-  <object x="2432" y="36" width="60" height="60"/>
-  <object x="2852" y="36" width="60" height="60"/>
- </objectgroup>
 </map>

@@ -26,7 +26,9 @@ var res = {
     tortuga_png : "res/tortuga.png",
     tortuga_plist : "res/tortuga.plist",
     cebra_png : "res/cebra.png",
-    cebra_plist : "res/cebra.plist"
+    cebra_plist : "res/cebra.plist",
+    gallina_png : "res/gallina.png",
+    gallina_plist : "res/gallina.plist"
 };
 
 var g_resources = [];

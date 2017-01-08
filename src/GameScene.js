@@ -129,7 +129,7 @@ var GameLayer = cc.Layer.extend({
             this.animal.body.p = cc.p(this.widthAnimal, this.heightAnimal);
         }
 
-        this.random = Math.random((this.camioneta.body.p.x) - this.camioneta.body.p.x + 10) + (this.camioneta.body.p.x + 10);
+        this.random = Math.random((this.camioneta.body.p.x) - this.camioneta.body.p.x + 50) + (this.camioneta.body.p.x + 50);
         if(this.tiempoEntreMeteoritos > this.tiempoUltimaCaida){
             this.meteorito = new Meteorito(this, cc.p(this.random, this.mapa.getContentSize().height));
             this.tiempoUltimaCaida = this.tiempoUltimaCaida + dt;

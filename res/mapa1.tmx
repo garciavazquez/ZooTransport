@@ -14,8 +14,8 @@
   </data>
  </layer>
  <objectgroup name="Suelos" width="100" height="20">
-  <object x="2" y="514">
-   <polyline points="0,0 154,-4 156,92 1660,94 2106,62 2680,30 3190,-2"/>
+  <object x="0" y="512">
+   <polyline points="0,0 158,-2 160,104 1662,110 2112,82 2684,48 3198,14"/>
   </object>
  </objectgroup>
  <objectgroup name="Meta" width="100" height="20">

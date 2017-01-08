@@ -1,6 +1,4 @@
-var Tortuga = cc.Class.extend({
-    tiempoUtimoSalto:0,
-    tiempoEntreSaltos:0,
+var Cebra = cc.Class.extend({
     gameLayer:null,
     sprite:null,
     shape:null,
@@ -12,7 +10,7 @@ ctor:function (gameLayer, posicion) {
     // Crear animación
    var framesAnimacion = [];
    for (var i=1; i<=4; i++){
-    var str = "tortuga" + i + ".png";
+    var str = "cebra" + i + ".png";
     var frame = cc.spriteFrameCache.getSpriteFrame(str);
     framesAnimacion.push(frame);
    }
@@ -22,7 +20,7 @@ ctor:function (gameLayer, posicion) {
            new cc.RepeatForever(new cc.Animate(animacion));
 
     // Crear Sprite - Cuerpo y forma
-    this.sprite = new cc.PhysicsSprite("#tortuga1.png");
+    this.sprite = new cc.PhysicsSprite("#cebra1.png");
 
     this.body = new cp.Body(1, cp.momentForBox(0.1,
        this.sprite.getContentSize().width,
@@ -51,25 +49,7 @@ ctor:function (gameLayer, posicion) {
 
 }, update:function (dt) {
 
-     /* // aumentar el tiempo que ha pasado desde el ultimo salto
-      this.tiempoUtimoSalto = this.tiempoUtimoSalto + dt;
 
-      // Saltan si el tiempo ha pasado
-      if(this.tiempoUtimoSalto > this.tiempoEntreSaltos){
-         var impulsoX = 50 + Math.floor(Math.random() * 150);
-         var impulsoY = 500 + Math.floor(Math.random() * 200);
-
-          // Colocar en angulo del cuerpo a 0
-          this.body.setAngle(0);
-          this.body.applyImpulse(cp.v(impulsoX, impulsoY), cp.v(0, 0));
-          this.tiempoUtimoSalto = 0;
-          this.saltando = true;
-          this.tiempoEntreSaltos = 4 + Math.floor(Math.random() * 2);
-
-      }*/
-  }/*, terminaSalto:function () {
-
-          this.saltando = false;
-   }*/
+  }
 
 });

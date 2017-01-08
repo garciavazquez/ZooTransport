@@ -66,6 +66,7 @@ var GameLayer = cc.Layer.extend({
             case 0: this.animal = new Rana(this, cc.p(this.widthAnimal, this.heightAnimal)); break;
             case 1: this.animal = new Cuervo(this, cc.p(this.widthAnimal, this.heightAnimal)); break;
             case 2: this.animal = new Tortuga(this, cc.p(this.widthAnimal, this.heightAnimal)); break;
+            case 3: this.animal = new Cebra(this, cc.p(this.widthAnimal, this.heightAnimal)); break;
             default: this.animal = new Rana(this, cc.p(this.widthAnimal, this.heightAnimal)); break;
         }
 
@@ -224,6 +225,7 @@ var GameScene = cc.Scene.extend({
         cc.spriteFrameCache.addSpriteFrames(res.meta_plist);
         cc.spriteFrameCache.addSpriteFrames(res.meteorito_plist);
         cc.spriteFrameCache.addSpriteFrames(res.tortuga_plist);
+        cc.spriteFrameCache.addSpriteFrames(res.cebra_plist);
 
         cc.audioEngine.playMusic(res.musicabucle_wav, true);
 

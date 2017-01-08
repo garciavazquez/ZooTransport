@@ -1,0 +1,1 @@
+cebra_01.png.png 0 0, cebra_02.png.png 0 278, cebra_03.png.png 0 559, cebra_04.png.png 311 559.

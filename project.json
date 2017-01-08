@@ -19,6 +19,7 @@
         "src/Puente.js",
         "src/Meta.js",
         "src/Meteorito.js",
-        "src/Tortuga.js"
+        "src/Tortuga.js",
+        "src/Cebra.js"
     ]
 }

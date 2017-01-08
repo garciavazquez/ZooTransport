@@ -24,7 +24,9 @@ var res = {
     meteorito_plist : "res/meteorito.plist",
     musicabucle_wav : "res/musicabucle.wav",
     tortuga_png : "res/tortuga.png",
-    tortuga_plist : "res/tortuga.plist"
+    tortuga_plist : "res/tortuga.plist",
+    cebra_png : "res/cebra.png",
+    cebra_plist : "res/cebra.plist"
 };
 
 var g_resources = [];

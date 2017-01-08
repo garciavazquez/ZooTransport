@@ -4,60 +4,60 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>cebra_01.png</key>
+			<key>cebra1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,559},{310,274}}</string>
+				<string>{{0,63},{69,61}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{310,274}}</string>
+				<string>{{0,0},{69,61}}</string>
 				<key>sourceSize</key>
-				<string>{310,274}</string>
+				<string>{69,61}</string>
 			</dict>
 
-			<key>cebra_02.png</key>
+			<key>cebra2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,0},{313,277}}</string>
+				<string>{{70,0},{69,62}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{313,277}}</string>
+				<string>{{0,0},{69,62}}</string>
 				<key>sourceSize</key>
-				<string>{313,277}</string>
+				<string>{69,62}</string>
 			</dict>
 
-			<key>cebra_03.png</key>
+			<key>cebra3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{311,559},{310,280}}</string>
+				<string>{{70,63},{69,61}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{310,280}}</string>
+				<string>{{0,0},{69,61}}</string>
 				<key>sourceSize</key>
-				<string>{310,280}</string>
+				<string>{69,61}</string>
 			</dict>
 
-			<key>cebra_04.png</key>
+			<key>cebra4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,278},{311,280}}</string>
+				<string>{{0,0},{69,62}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{311,280}}</string>
+				<string>{{0,0},{69,62}}</string>
 				<key>sourceSize</key>
-				<string>{311,280}</string>
+				<string>{69,62}</string>
 			</dict>
 
 		</dict>
@@ -67,9 +67,9 @@
 			<key>format</key>
 			<integer>2</integer>
 			<key>size</key>
-			<string>{1024,1024}</string>
+			<string>{256,128}</string>
 			<key>textureFileName</key>
-			<string>sprites.png</string>
+			<string>cebra.png</string>
 			</dict>
 		</dict>
 </plist>

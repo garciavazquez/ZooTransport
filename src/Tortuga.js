@@ -1,4 +1,4 @@
-var Cuervo = cc.Class.extend({
+var Tortuga = cc.Class.extend({
     tiempoUtimoSalto:0,
     tiempoEntreSaltos:0,
     gameLayer:null,

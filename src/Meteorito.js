@@ -1,4 +1,4 @@
-var Meta = cc.Class.extend({
+var Meteorito = cc.Class.extend({
     gameLayer:null,
     sprite:null,
     shape:null,

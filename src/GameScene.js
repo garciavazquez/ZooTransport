@@ -159,9 +159,12 @@ var GameLayer = cc.Layer.extend({
             }
         }
 
-       /* var grupoPuentes = this.mapa.getObjectGroup("Puentes");
-        var puentesArray = grupoPuentes.getObjects();
-        this.puente = new Puente(this,cc.p(puentesArray[0]["x"], puentesArray[0]["y"]));*/
+       var grupoPuentes = this.mapa.getObjectGroup("Puentes");
+       var puentesArray = grupoPuentes.getObjects();
+       if(puentesArray[0] != null)
+       {
+           this.puente = new Puente(this,cc.p(puentesArray[0]["x"], puentesArray[0]["y"]));
+       }
 
         var grupoMetas = this.mapa.getObjectGroup("Meta");
         var arrayMeta = grupoMetas.getObjects();
@@ -173,7 +176,7 @@ var GameLayer = cc.Layer.extend({
     }, colisionAnimalConSuelo:function(arbiter, space) {
             /* cc.director.pause();
              cc.audioEngine.stopMusic();*/
-            cc.director.runScene(new GameScene());
+            //cc.director.runScene(new GameScene());
     }, colisionCamionetaConMeta:function(arbiter, space){
         nivelActual = nivelActual +1;
         cc.director.runScene(new GameScene());

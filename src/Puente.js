@@ -3,10 +3,10 @@ var Puente = cc.Class.extend({
     sprite:null,
     shape:null,
 ctor:function (gameLayer, posicion) {
-    this.gameLayer = gameLayer;
+   /* this.gameLayer = gameLayer;
 
     // Crear Sprite - Cuerpo y forma
-    this.sprite = new cc.PhysicsSprite("#puente1.png");
+    this.sprite = new cc.PhysicsSprite("#puente.png");
 
     this.body = new cp.Body(1, cp.momentForBox(0.1, this.sprite.getContentSize().width, this.sprite.getContentSize().height));
 
@@ -18,27 +18,41 @@ ctor:function (gameLayer, posicion) {
 
     // forma
     this.shape = new cp.BoxShape(this.body, this.sprite.getContentSize().width, this.sprite.getContentSize().height);
-    //this.shape.setCollisionType(tipoAnimal);
+
     this.shape.setFriction(4);
     // agregar forma dinamica
     gameLayer.space.addShape(this.shape);
     // añadir sprite a la capa
 
-    gameLayer.addChild(this.sprite,10);
-}, update:function (dt) {
+    gameLayer.addChild(this.sprite,10);*/
 
+      this.gameLayer = gameLayer;
 
+        // Crear Sprite - Cuerpo y forma
+        this.sprite = new cc.PhysicsSprite("#puente.png");
+        // Cuerpo estática, no le afectan las fuerzas
+        var body = new cp.StaticBody();
+        body.setPos(posicion);
+        this.sprite.setBody(body);
+
+        // forma
+        this.shape = new cp.BoxShape(body, this.sprite.width - 16, this.sprite.height - 16);
+        this.shape.setCollisionType(tipoMeta);
+        // forma estática
+        gameLayer.space.addStaticShape(this.shape);
+        // añadir sprite a la capa
+        gameLayer.addChild(this.sprite);
 },  moverAutomaticamente: function(){ //CAMBIAR ESTO PARA QUE SEA EN VERTICAL
     // Velocidad baja ha colisionado con algo,
-    if ( this.body.vx < 3 &&  this.body.vx > -3 ) {
-        if (this.direccion == "derecha"){
-            this.direccion = "izquierda";
-            this.body.p.x = this.body.p.x -10; // Para que salga de la colisión
-            this.sprite.scaleX = 1;
+    if ( this.body.vy < 3 &&  this.body.vy > -3 ) {
+        if (this.direccion == "arriba"){
+            this.direccion = "abajo";
+            this.body.p.y = this.body.p.y -10; // Para que salga de la colisión
+            this.sprite.scaleY = 1;
         } else {
-            this.direccion = "derecha";
-            this.body.p.x = this.body.p.x + 10; // Para que salga de la zona de colisión
-            this.sprite.scaleX = -1;
+            this.direccion = "arriba";
+            this.body.p.y = this.body.p.y + 10; // Para que salga de la zona de colisión
+            this.sprite.scaleY = -1;
         }
     }
 }

@@ -14,11 +14,11 @@
   </data>
  </layer>
  <objectgroup name="Suelos" width="100" height="20">
-  <object x="3" y="512">
-   <polyline points="0,0 156,0 157,93 1212,95 1212,124"/>
+  <object x="1" y="511">
+   <polyline points="0,0 157,1 157,96 1213,97 1213,127"/>
   </object>
-  <object x="1665" y="636">
-   <polyline points="0,0 -1,-29 60,-28 93,-61 383,-61 415,-93 1404,-92 1437,-61 1692,-61 1725,-93 2109,-93 2140,-125 2397,-124 2399,0"/>
+  <object x="1664" y="639">
+   <polyline points="0,0 0,-31 59,-31 383,-61 928,-96 1437,-63 1531,-64"/>
   </object>
  </objectgroup>
  <objectgroup name="Puentes" width="100" height="20">
@@ -26,5 +26,12 @@
  </objectgroup>
  <objectgroup name="Meta" width="100" height="20">
   <object x="3114" y="485" width="74" height="72"/>
+ </objectgroup>
+ <objectgroup name="Meteoritos" width="100" height="20">
+  <object x="577" y="33" width="60" height="60"/>
+  <object x="1090" y="31" width="60" height="60"/>
+  <object x="1663" y="34" width="60" height="60"/>
+  <object x="2241" y="35" width="60" height="60"/>
+  <object x="3042" y="34" width="60" height="60"/>
  </objectgroup>
 </map>

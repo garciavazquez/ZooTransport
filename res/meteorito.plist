@@ -4,18 +4,18 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>puente.png</key>
+			<key>meteorito.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,0},{221,12}}</string>
+				<string>{{0,0},{376,436}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{221,12}}</string>
+				<string>{{210,81},{376,436}}</string>
 				<key>sourceSize</key>
-				<string>{221,12}</string>
+				<string>{800,600}</string>
 			</dict>
 
 		</dict>
@@ -25,9 +25,9 @@
 			<key>format</key>
 			<integer>2</integer>
 			<key>size</key>
-			<string>{256,32}</string>
+			<string>{512,512}</string>
 			<key>textureFileName</key>
-			<string>puente.png</string>
+			<string>meteorito.png</string>
 			</dict>
 		</dict>
 </plist>

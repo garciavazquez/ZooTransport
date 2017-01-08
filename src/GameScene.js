@@ -19,6 +19,8 @@ var GameLayer = cc.Layer.extend({
     animal:null,
     widthCamioneta:0,
     heightCamioneta:0,
+    widthAnimal:0,
+    heightAnimal:0,
     puente:null,
     meta:null,
     ctor:function () {
@@ -52,14 +54,15 @@ var GameLayer = cc.Layer.extend({
         this.space.addShape(shape);
         this.addChild(this.camioneta);
 
+        this.widthAnimal = size.width*0.3;
+        this.heightAnimal = size.height*0.6;
         //Cargar animal
         switch (nivelActual)
         {
-            case 0: this.animal = new Rana(this, cc.p(size.width*0.3 , size.height*0.6)); break;
-            case 1: this.animal = new Cuervo(this, cc.p(size.width*0.3 , size.height*0.6)); break;
-            default: this.animal = new Rana(this, cc.p(size.width*0.3 , size.height*0.6)); break;
+            case 0: this.animal = new Rana(this, cc.p(this.widthAnimal, this.heightAnimal)); break;
+            case 1: this.animal = new Cuervo(this, cc.p(this.widthAnimal, this.heightAnimal)); break;
+            default: this.animal = new Rana(this, cc.p(this.widthAnimal, this.heightAnimal)); break;
         }
-
 
         cc.eventManager.addListener({
             event: cc.EventListener.KEYBOARD,
@@ -97,7 +100,7 @@ var GameLayer = cc.Layer.extend({
 
         this.animal.update(dt);
 
-       // this.puente.moverAutomaticamente();
+        //this.puente.moverAutomaticamente();
 
         var posicionCamioneta = this.camioneta.getBody().p.x-200;
         if(-this.getPosition().x < (this.mapaAncho - cc.winSize.width))
@@ -110,8 +113,9 @@ var GameLayer = cc.Layer.extend({
              bodyCamioneta.setVel(cp.v(-100, bodyCamioneta.getVel().y))
 
         // Caída, sí cae vuelve a la posición inicial
-        if( this.camioneta.body.p.y < -100){
+        if( this.camioneta.body.p.y < -100 || this.animal.body.p.y < -100){
             this.camioneta.body.p = cc.p(this.widthCamioneta , this.heightCamioneta);
+            this.animal.body.p = cc.p(this.widthAnimal, this.heightAnimal);
         }
     }, cargarMapa:function () {
         this.mapa = new cc.TMXTiledMap(niveles[nivelActual]);
@@ -176,6 +180,7 @@ var GameScene = cc.Scene.extend({
         cc.spriteFrameCache.addSpriteFrames(res.cuervo_plist);
         cc.spriteFrameCache.addSpriteFrames(res.puente_plist);
         cc.spriteFrameCache.addSpriteFrames(res.meta_plist);
+        cc.spriteFrameCache.addSpriteFrames(res.meteorito_plist);
 
         var layer = new GameLayer();
         this.addChild(layer);

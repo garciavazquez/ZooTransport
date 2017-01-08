@@ -7,15 +7,15 @@
 			<key>puente.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,0},{221,12}}</string>
+				<string>{{0,0},{230,23}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{0,0},{221,12}}</string>
+				<string>{{0,0},{230,23}}</string>
 				<key>sourceSize</key>
-				<string>{221,12}</string>
+				<string>{230,23}</string>
 			</dict>
 
 		</dict>

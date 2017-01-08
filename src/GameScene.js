@@ -22,9 +22,11 @@ var GameLayer = cc.Layer.extend({
     heightAnimal:0,
     puente:null,
     meta:null,
+    meteoritos:[],
     meteorito:null,
     tiempoEntreMeteoritos:0,
     tiempoUltimaCaida:0,
+    formasEliminar:[],
     ctor:function () {
         this._super();
         var size = cc.winSize;
@@ -96,11 +98,11 @@ var GameLayer = cc.Layer.extend({
         this.space.addCollisionHandler(tipoAnimal, tipoSuelo,  null, null, this.colisionAnimalConSuelo.bind(this), null);
         this.space.addCollisionHandler(tipoCamioneta, tipoMeta, null, this.colisionCamionetaConMeta.bind(this), null, null);
         this.space.addCollisionHandler(tipoMeteorito, tipoAnimal, null, null, this.colisionMeteoritoConAnimal.bind(this), null);
-        this.space.addCollisionHandler(tipoMeteorito, tipoCamioneta, null, null, this.colisionMeteoritoConCamioneta.bind(this), null);
+        //this.space.addCollisionHandler(tipoMeteorito, tipoCamioneta, null, null, this.colisionMeteoritoConCamioneta.bind(this), null);
+        this.space.addCollisionHandler(tipoMeteorito, tipoSuelo, null, null, this.colisionMeteoritoConSuelo.bind(this), null);
 
-
-        this.tiempoEntreMeteoritos = 0.2 + Math.floor(Math.random() * 2);
-        console.log("Tiempo entre meteoritos", this.tiempoEntreMeteoritos);
+        this.tiempoEntreMeteoritos = 4 + Math.floor(Math.random() * 2);
+        //console.log("Tiempo entre meteoritos", this.tiempoEntreMeteoritos);
 
         return true;
     },update:function (dt) {
@@ -110,7 +112,7 @@ var GameLayer = cc.Layer.extend({
 
         //this.puente.moverAutomaticamente();
 
-        var posicionCamioneta = this.camioneta.getBody().p.x-200;
+        var posicionCamioneta = this.camioneta.getBody().p.x-350;
         if(-this.getPosition().x < (this.mapaAncho - cc.winSize.width))
             this.setPosition(cc.p(- posicionCamioneta,0));
 
@@ -126,14 +128,25 @@ var GameLayer = cc.Layer.extend({
             this.animal.body.p = cc.p(this.widthAnimal, this.heightAnimal);
         }
 
-
-        this.random = Math.random()*(this.mapaAncho - 30) + 30
-        if(this.tiempoEntreMeteoritos > this.tiempoUltimaCaida){
-            this.meteorito = new Meteorito(this, cc.p(this.random, this.mapa.getContentSize().height/2));
+        this.random = Math.random()*(this.mapaAncho * 2 - 30) + 30;
+        while(this.tiempoEntreMeteoritos > this.tiempoUltimaCaida){
+            //this.meteorito = new Meteorito(this, cc.p(this.random, this.mapa.getContentSize().height));
             this.tiempoUltimaCaida = this.tiempoUltimaCaida + dt;
-
-            console.log("Tiempo ultima caida", this.tiempoUltimaCaida);
+            //this.tiempoEntreMeteoritos = 0;
+            //console.log("Tiempo ultima caida", this.tiempoUltimaCaida);
         }
+
+       /* for(var i = 0; i < this.formasEliminar.length; i++) {
+            var shape = this.formasEliminar[i];
+
+            for (var r = 0; r < this.meteoritos.length; r++) {
+                if (this.meteoritos[r].shape == shape) {
+                    this.meteoritos[r].eliminar();
+                    this.meteoritos.splice(r, 1);
+                }
+            }
+        }
+        this.formasEliminar = [];*/
 
     }, cargarMapa:function () {
         this.mapa = new cc.TMXTiledMap(niveles[nivelActual]);
@@ -191,6 +204,9 @@ var GameLayer = cc.Layer.extend({
         cc.director.runScene(new GameScene());
     }, colisionMeteoritoConCamioneta:function(arbiter, space){
         cc.director.runScene(new GameScene());
+    }, colisionMeteoritoConSuelo:function(arbiter, space){
+        var shapes = arbiter.getShapes();
+        this.formasEliminar.push(shapes[0]);
     }
 });
 

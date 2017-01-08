@@ -24,6 +24,7 @@ var GameLayer = cc.Layer.extend({
     meta:null,
     meteorito:null,
     tiempoEntreMeteoritos:0,
+    tiempoUltimaCaida:0,
     ctor:function () {
         this._super();
         var size = cc.winSize;
@@ -97,6 +98,10 @@ var GameLayer = cc.Layer.extend({
         this.space.addCollisionHandler(tipoMeteorito, tipoAnimal, null, null, this.colisionMeteoritoConAnimal.bind(this), null);
         this.space.addCollisionHandler(tipoMeteorito, tipoCamioneta, null, null, this.colisionMeteoritoConCamioneta.bind(this), null);
 
+
+        this.tiempoEntreMeteoritos = 0.2 + Math.floor(Math.random() * 2);
+        console.log("Tiempo entre meteoritos", this.tiempoEntreMeteoritos);
+
         return true;
     },update:function (dt) {
         this.space.step(dt);
@@ -121,12 +126,14 @@ var GameLayer = cc.Layer.extend({
             this.animal.body.p = cc.p(this.widthAnimal, this.heightAnimal);
         }
 
-       /* this.tiempoEntreMeteoritos = 4 + Math.floor(Math.random() * 3);
-        this.meteorito.update(dt);
+
         this.random = Math.random()*(this.mapaAncho - 30) + 30
-        if(this.tiempoEntreMeteoritos > this.meteorito.tiempoUltimaCaida){
-            this.meteorito = new Meteorito(this, cc.p(this.mapa.getContentSize().height, this.random));
-        }*/
+        if(this.tiempoEntreMeteoritos > this.tiempoUltimaCaida){
+            this.meteorito = new Meteorito(this, cc.p(this.random, this.mapa.getContentSize().height/2));
+            this.tiempoUltimaCaida = this.tiempoUltimaCaida + dt;
+
+            console.log("Tiempo ultima caida", this.tiempoUltimaCaida);
+        }
 
     }, cargarMapa:function () {
         this.mapa = new cc.TMXTiledMap(niveles[nivelActual]);
@@ -176,7 +183,7 @@ var GameLayer = cc.Layer.extend({
     }, colisionAnimalConSuelo:function(arbiter, space) {
             /* cc.director.pause();
              cc.audioEngine.stopMusic();*/
-            //cc.director.runScene(new GameScene());
+        cc.director.runScene(new GameScene());
     }, colisionCamionetaConMeta:function(arbiter, space){
         nivelActual = nivelActual +1;
         cc.director.runScene(new GameScene());

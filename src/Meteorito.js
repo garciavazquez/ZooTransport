@@ -2,7 +2,6 @@ var Meteorito = cc.Class.extend({
     gameLayer:null,
     sprite:null,
     shape:null,
-    tiempoUltimaCaida:0,
 ctor:function (gameLayer, posicion) {
     this.gameLayer = gameLayer;
 
@@ -26,8 +25,6 @@ ctor:function (gameLayer, posicion) {
     this.gameLayer.space.removeShape(this.shape);
     // quita el sprite
     this.gameLayer.removeChild(this.sprite);
-}, update:function(dt){
-    this.tiempoUltimaCaida = this.tiempoUltimaCaida + dt;
 }
 });
 

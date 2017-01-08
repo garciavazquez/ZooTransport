@@ -7,71 +7,71 @@
 			<key>gallina1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{94,77},{72,68}}</string>
+				<string>{{40,67},{38,35}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{5,3},{72,68}}</string>
+				<string>{{1,1},{38,35}}</string>
 				<key>sourceSize</key>
-				<string>{82,75}</string>
+				<string>{40,37}</string>
 			</dict>
 
 			<key>gallina2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,0},{97,76}}</string>
+				<string>{{0,67},{39,30}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{3,1},{97,76}}</string>
+				<string>{{0,0},{39,30}}</string>
 				<key>sourceSize</key>
-				<string>{103,78}</string>
+				<string>{40,30}</string>
 			</dict>
 
 			<key>gallina3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{93,147},{83,70}}</string>
+				<string>{{0,32},{40,34}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{1,5},{83,70}}</string>
+				<string>{{0,2},{40,34}}</string>
 				<key>sourceSize</key>
-				<string>{86,80}</string>
+				<string>{40,37}</string>
 			</dict>
 
 			<key>gallina4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,147},{92,77}}</string>
+				<string>{{41,0},{38,32}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{4,1},{92,77}}</string>
+				<string>{{1,0},{38,32}}</string>
 				<key>sourceSize</key>
-				<string>{100,80}</string>
+				<string>{40,32}</string>
 			</dict>
 
 			<key>gallina5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,77},{93,69}}</string>
+				<string>{{0,0},{40,31}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false/>
 				<key>sourceColorRect</key>
-				<string>{{1,2},{93,69}}</string>
+				<string>{{0,0},{40,31}}</string>
 				<key>sourceSize</key>
-				<string>{95,74}</string>
+				<string>{40,31}</string>
 			</dict>
 
 		</dict>
@@ -81,7 +81,7 @@
 			<key>format</key>
 			<integer>2</integer>
 			<key>size</key>
-			<string>{256,256}</string>
+			<string>{128,128}</string>
 			<key>textureFileName</key>
 			<string>gallina.png</string>
 			</dict>

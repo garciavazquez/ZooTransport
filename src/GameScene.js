@@ -101,8 +101,8 @@ var GameLayer = cc.Layer.extend({
         //this.space.addCollisionHandler(tipoMeteorito, tipoCamioneta, null, null, this.colisionMeteoritoConCamioneta.bind(this), null);
         this.space.addCollisionHandler(tipoMeteorito, tipoSuelo, null, null, this.colisionMeteoritoConSuelo.bind(this), null);
 
-        this.tiempoEntreMeteoritos = 4 + Math.floor(Math.random() * 2);
-        //console.log("Tiempo entre meteoritos", this.tiempoEntreMeteoritos);
+        this.tiempoEntreMeteoritos = 4 + (Math.random() * 2);
+        console.log("Tiempo entre meteoritos", this.tiempoEntreMeteoritos);
 
         return true;
     },update:function (dt) {
@@ -110,7 +110,8 @@ var GameLayer = cc.Layer.extend({
 
         this.animal.update(dt);
 
-        //this.puente.moverAutomaticamente();
+        //if(this.puente != null)
+            //this.puente.moverAutomaticamente();
 
         var posicionCamioneta = this.camioneta.getBody().p.x-350;
         if(-this.getPosition().x < (this.mapaAncho - cc.winSize.width))
@@ -128,15 +129,15 @@ var GameLayer = cc.Layer.extend({
             this.animal.body.p = cc.p(this.widthAnimal, this.heightAnimal);
         }
 
-        this.random = Math.random()*(this.mapaAncho * 2 - 30) + 30;
-        while(this.tiempoEntreMeteoritos > this.tiempoUltimaCaida){
-            //this.meteorito = new Meteorito(this, cc.p(this.random, this.mapa.getContentSize().height));
+        this.random = Math.random((this.camioneta.body.p.x) - this.camioneta.body.p.x + 10) + (this.camioneta.body.p.x + 10);
+        if(this.tiempoEntreMeteoritos > this.tiempoUltimaCaida){
+            this.meteorito = new Meteorito(this, cc.p(this.random, this.mapa.getContentSize().height));
             this.tiempoUltimaCaida = this.tiempoUltimaCaida + dt;
-            //this.tiempoEntreMeteoritos = 0;
+            this.tiempoEntreMeteoritos = 0;
             //console.log("Tiempo ultima caida", this.tiempoUltimaCaida);
         }
 
-       /* for(var i = 0; i < this.formasEliminar.length; i++) {
+        for(var i = 0; i < this.formasEliminar.length; i++) {
             var shape = this.formasEliminar[i];
 
             for (var r = 0; r < this.meteoritos.length; r++) {
@@ -146,7 +147,7 @@ var GameLayer = cc.Layer.extend({
                 }
             }
         }
-        this.formasEliminar = [];*/
+        this.formasEliminar = [];
 
     }, cargarMapa:function () {
         this.mapa = new cc.TMXTiledMap(niveles[nivelActual]);

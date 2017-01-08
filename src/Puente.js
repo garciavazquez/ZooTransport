@@ -22,7 +22,7 @@ ctor:function (gameLayer, posicion) {
     gameLayer.addChild(this.sprite);
 },  moverAutomaticamente: function(){ //CAMBIAR ESTO PARA QUE SEA EN VERTICAL
     // Velocidad baja ha colisionado con algo,
-    if ( this.body.vy < 3 &&  this.body.vy > -3 ) {
+    if ( this.body.vx < 3 &&  this.body.vx > -3 ) {
         if (this.direccion == "arriba"){
             this.direccion = "abajo";
             this.body.p.y = this.body.p.y -10; // Para que salga de la colisión

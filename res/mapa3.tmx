@@ -10,21 +10,21 @@
  </layer>
  <layer name="PatronesTerreno" width="100" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt0TsKgDAQQMHgBwVtLPT+RzUWFooYCEggzsArF5bdEAAAAAAAAOoyP0Q5f//HGGtf6j5uuO1T6z+OOzeJ+tgWWwq2huv/UzuXasrsnC9959x2smkHlg==
+   eJzt0TsKgEAMQMHFDwraWOj9j+paKmJAkIV1Bl4ZCElKAAAAAAAAdZlvopy//2PMtQ91Hzdc9qn1H8edm6A+t+WWgq3p/P9o51JNQdF86Tu/bQeG9Qdg
   </data>
  </layer>
  <objectgroup name="Suelos" width="100" height="20">
-  <object x="1" y="511">
-   <polyline points="0,0 157,1 157,96 1213,97 1213,127"/>
+  <object x="0" y="511">
+   <polyline points="0,0 157,0 159,111 1213,109 1213,125"/>
   </object>
-  <object x="1664" y="639">
-   <polyline points="0,0 0,-31 59,-31 383,-61 928,-96 1437,-63 1531,-64"/>
+  <object x="1472" y="636">
+   <polyline points="0,0 0,-12 190,-11 383,-37 511,-41 701,-59 924,-76 1279,-77 1632,-45 1725,-45"/>
   </object>
  </objectgroup>
  <objectgroup name="Puentes" width="100" height="20">
-  <object x="1223" y="608" width="429" height="16"/>
+  <object x="1344" y="571" width="44" height="45"/>
  </objectgroup>
  <objectgroup name="Meta" width="100" height="20">
-  <object x="3114" y="485" width="74" height="72"/>
+  <object x="3115" y="480" width="74" height="72"/>
  </objectgroup>
 </map>

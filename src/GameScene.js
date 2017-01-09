@@ -1,5 +1,5 @@
 var niveles = [ res.mapa1_tmx , res.mapa2_tmx, res.mapa3_tmx, res.mapa4_tmx, res.mapa5_tmx ];
-var nivelActual = 0;
+var nivelActual = 4;
 
 var tipoCamioneta = 1;
 var tipoSuelo = 2;
@@ -66,7 +66,7 @@ var GameLayer = cc.Layer.extend({
             case 1: this.animal = new Cuervo(this, cc.p(this.widthAnimal, this.heightAnimal)); break;
             case 2: this.animal = new Tortuga(this, cc.p(this.widthAnimal, this.heightAnimal)); break;
             case 3: this.animal = new Cebra(this, cc.p(this.widthAnimal, this.heightAnimal)); break;
-            //case 4: this.animal = new Gallina(this, cc.p(this.widthAnimal, this.heightAnimal)); break;
+            case 4: this.animal = new Gallina(this, cc.p(this.widthAnimal, this.heightAnimal)); break;
             default: this.animal = new Rana(this, cc.p(this.widthAnimal, this.heightAnimal)); break;
         }
 

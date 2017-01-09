@@ -115,9 +115,8 @@ var GameLayer = cc.Layer.extend({
              bodyCamioneta.setVel(cp.v(-100, bodyCamioneta.getVel().y))
 
         // Caída, sí cae vuelve a la posición inicial
-        if( this.camioneta.body.p.y < -100 || this.animal.body.p.y < -100){
-            this.camioneta.body.p = cc.p(this.widthCamioneta , this.heightCamioneta);
-            this.animal.body.p = cc.p(this.widthAnimal, this.heightAnimal);
+        if( this.camioneta.body.p.y < 0 || this.animal.body.p.y < 0){
+            cc.director.runScene(new GameScene());
         }
 
         var random =  Math.floor(Math.random() * 10);
@@ -184,7 +183,7 @@ var GameLayer = cc.Layer.extend({
     }, colisionAnimalConSuelo:function(arbiter, space) {
             /* cc.director.pause();
              cc.audioEngine.stopMusic();*/
-        cc.director.runScene(new GameScene());
+        //cc.director.runScene(new GameScene());
     }, colisionCamionetaConMeta:function(arbiter, space){
         nivelActual = nivelActual +1;
         if(nivelActual > 4){

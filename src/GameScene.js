@@ -187,6 +187,9 @@ var GameLayer = cc.Layer.extend({
         cc.director.runScene(new GameScene());
     }, colisionCamionetaConMeta:function(arbiter, space){
         nivelActual = nivelActual +1;
+        if(nivelActual > 4){
+            nivelActual = 0;
+        }
         cc.director.runScene(new GameScene());
     }, colisionMeteoritoConAnimal:function(arbiter, space){
         cc.director.runScene(new GameScene());

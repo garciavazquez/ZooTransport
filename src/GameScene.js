@@ -1,5 +1,5 @@
 var niveles = [ res.mapa1_tmx , res.mapa2_tmx, res.mapa3_tmx, res.mapa4_tmx, res.mapa5_tmx ];
-var nivelActual = 4;
+var nivelActual = 1;
 
 var tipoCamioneta = 1;
 var tipoSuelo = 2;
@@ -25,21 +25,20 @@ var GameLayer = cc.Layer.extend({
     meteorito:null,
     tiempoUltimaCaida:0,
     eliminar:false,
+    tiempoInvisible:0,
+    tiempoVisible:0,
     ctor:function () {
         this._super();
         var size = cc.winSize;
 
         this.tiempo = new Date().getTime();
         this.tiempoUltimaCaida = 0;
+        this.tiempoEntreVisibilidad = 3 + Math.floor(Math.random() * 2);
 
         // Inicializar Space
         this.space = new cp.Space();
         this.space.gravity = cp.v(0, -350);
         this.space.damping = 0.5;
-
-        // Depuración
-       /* this.depuracion = new cc.PhysicsDebugNode(this.space);
-        this.addChild(this.depuracion, 10);*/
 
         this.cargarMapa();
 
@@ -101,15 +100,12 @@ var GameLayer = cc.Layer.extend({
         this.space.addCollisionHandler(tipoMeteorito, tipoCamioneta, null, null, this.colisionMeteoritoConCamioneta.bind(this), null);
         this.space.addCollisionHandler(tipoMeteorito, tipoSuelo, null, null, this.colisionMeteoritoConSuelo.bind(this), null);
 
-
         return true;
     },update:function (dt) {
         this.space.step(dt);
 
         this.animal.update(dt);
 
-        //if(this.puente != null)
-            //this.puente.moverAutomaticamente();
 
         var posicionCamioneta = this.camioneta.getBody().p.x-350;
         if(-this.getPosition().x < (this.mapaAncho - cc.winSize.width))
@@ -135,13 +131,28 @@ var GameLayer = cc.Layer.extend({
             this.tiempoUltimaCaida = 0;
         }
 
-        if(this.eliminar)
-        {
-         this.meteorito.eliminar();
-         this.eliminar = false;
-         }
+        if(this.eliminar) {
+            this.meteorito.eliminar();
+            this.eliminar = false;
+        }
 
-
+        //El puente se hace insible durante x segundos
+        this.tiempoInvisible = this.tiempoInvisible + dt;
+        this.tiempoVisible = this.tiempoVisible + dt;
+        if(this.puente != null){
+            if (this.tiempoInvisible > this.tiempoEntreVisibilidad){
+                console.log("Invisible", this.tiempoInvisible);
+                this.puente.eliminar();
+                this.puente.eliminado = true;
+                this.tiempoInvisible = 0;
+            }
+            /*if(this.puente.eliminado == true) {
+                this.puente.addPuente();
+                this.puente.eliminado = false;
+                console.log("Visible", this.tiempoVisible);
+                this.tiempoVisible = 0;
+            }*/
+        }
     }, cargarMapa:function () {
         this.mapa = new cc.TMXTiledMap(niveles[nivelActual]);
         // Añadirlo a la Layer

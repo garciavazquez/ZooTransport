@@ -2,6 +2,7 @@ var Puente = cc.Class.extend({
     gameLayer:null,
     sprite:null,
     shape:null,
+    eliminado:false,
 ctor:function (gameLayer, posicion) {
     this.gameLayer = gameLayer;
 
@@ -20,5 +21,9 @@ ctor:function (gameLayer, posicion) {
     gameLayer.space.addStaticShape(this.shape);
     // añadir sprite a la capa
     gameLayer.addChild(this.sprite);
+}, eliminar:function(){
+    this.gameLayer.removeChild(this.sprite);
+}, addPuente:function(){
+    this.gameLayer.addChild(this.sprite);
 }
 });

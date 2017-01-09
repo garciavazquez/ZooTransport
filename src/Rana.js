@@ -79,12 +79,8 @@ ctor:function (gameLayer, posicion) {
 
       }
   }, terminaSalto:function () {
-
-          this.sprite.stopAllActions();
-          this.sprite.runAction(this.actionAnimacionParado);
-          this.saltando = false;
-       }
-
-
-
+        this.sprite.stopAllActions();
+        this.sprite.runAction(this.actionAnimacionParado);
+        this.saltando = false;
+  }
 });

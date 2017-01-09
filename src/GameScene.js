@@ -25,15 +25,12 @@ var GameLayer = cc.Layer.extend({
     meteorito:null,
     tiempoUltimaCaida:0,
     eliminar:false,
-    tiempoInvisible:0,
-    tiempoVisible:0,
     ctor:function () {
         this._super();
         var size = cc.winSize;
 
         this.tiempo = new Date().getTime();
         this.tiempoUltimaCaida = 0;
-        this.tiempoEntreVisibilidad = 3 + Math.floor(Math.random() * 2);
 
         // Inicializar Space
         this.space = new cp.Space();
@@ -136,23 +133,10 @@ var GameLayer = cc.Layer.extend({
             this.eliminar = false;
         }
 
-        //El puente se hace insible durante x segundos
-        this.tiempoInvisible = this.tiempoInvisible + dt;
-        this.tiempoVisible = this.tiempoVisible + dt;
         if(this.puente != null){
-            if (this.tiempoInvisible > this.tiempoEntreVisibilidad){
-                console.log("Invisible", this.tiempoInvisible);
-                this.puente.eliminar();
-                this.puente.eliminado = true;
-                this.tiempoInvisible = 0;
-            }
-            /*if(this.puente.eliminado == true) {
-                this.puente.addPuente();
-                this.puente.eliminado = false;
-                console.log("Visible", this.tiempoVisible);
-                this.tiempoVisible = 0;
-            }*/
+            this.puente.update(dt);
         }
+
     }, cargarMapa:function () {
         this.mapa = new cc.TMXTiledMap(niveles[nivelActual]);
         // Añadirlo a la Layer

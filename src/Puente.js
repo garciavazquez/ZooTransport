@@ -3,8 +3,11 @@ var Puente = cc.Class.extend({
     sprite:null,
     shape:null,
     eliminado:false,
+    tiempoInvisible:0,
+    tiempoEntreVisibilidad:0,
 ctor:function (gameLayer, posicion) {
     this.gameLayer = gameLayer;
+    this.tiempoEntreVisibilidad = 4 + Math.floor(Math.random() * 2);
 
     // Crear Sprite - Cuerpo y forma
     this.sprite = new cc.PhysicsSprite("#puente.png");
@@ -21,9 +24,19 @@ ctor:function (gameLayer, posicion) {
     gameLayer.space.addStaticShape(this.shape);
     // añadir sprite a la capa
     gameLayer.addChild(this.sprite);
-}, eliminar:function(){
-    this.gameLayer.removeChild(this.sprite);
-}, addPuente:function(){
-    this.gameLayer.addChild(this.sprite);
+},update:function(dt){
+    this.tiempoInvisible = this.tiempoInvisible + dt;
+    if (this.tiempoInvisible > this.tiempoEntreVisibilidad){
+        this.gameLayer.removeChild(this.sprite);
+        this.eliminado = true;
+        this.tiempoInvisible = 0;
+        console.log("Invisible");
+    }
+
+    /*if(this.eliminado == true){
+        this.gameLayer.addChild(this.sprite);
+        this.eliminado = false;
+        console.log("Visible");
+    }*/
 }
 });

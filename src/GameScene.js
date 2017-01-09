@@ -1,5 +1,5 @@
 var niveles = [ res.mapa1_tmx , res.mapa2_tmx, res.mapa3_tmx, res.mapa4_tmx, res.mapa5_tmx ];
-var nivelActual = 1;
+var nivelActual = 0;
 
 var tipoCamioneta = 1;
 var tipoSuelo = 2;
@@ -217,7 +217,5 @@ var GameScene = cc.Scene.extend({
 
         var layer = new GameLayer();
         this.addChild(layer);
-
-
     }
 });

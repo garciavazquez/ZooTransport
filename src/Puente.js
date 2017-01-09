@@ -3,7 +3,7 @@ var Puente = cc.Class.extend({
     sprite:null,
     shape:null,
     eliminado:false,
-    tiempoInvisible:0,
+    tiempoVisible:0,
     tiempoEntreVisibilidad:0,
 ctor:function (gameLayer, posicion) {
     this.gameLayer = gameLayer;
@@ -25,18 +25,18 @@ ctor:function (gameLayer, posicion) {
     // añadir sprite a la capa
     gameLayer.addChild(this.sprite);
 },update:function(dt){
-    this.tiempoInvisible = this.tiempoInvisible + dt;
-    if (this.tiempoInvisible > this.tiempoEntreVisibilidad){
+    this.tiempoVisible = this.tiempoInvisible + dt;
+    if (this.tiempoVisible > this.tiempoEntreVisibilidad){
         this.gameLayer.removeChild(this.sprite);
         this.eliminado = true;
-        this.tiempoInvisible = 0;
+        this.tiempoVisible = 0;
         console.log("Invisible");
+    } else {
+        if(this.eliminado == true){
+            this.gameLayer.addChild(this.sprite);
+            this.eliminado = false;
+            console.log("Visible");
+        }
     }
-
-    /*if(this.eliminado == true){
-        this.gameLayer.addChild(this.sprite);
-        this.eliminado = false;
-        console.log("Visible");
-    }*/
 }
 });

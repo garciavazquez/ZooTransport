@@ -1,4 +1,6 @@
 var Cebra = cc.Class.extend({
+    tiempoUltimoSalto:0,
+    tiempoEntreSaltos:0,
     gameLayer:null,
     sprite:null,
     shape:null,
@@ -41,15 +43,32 @@ ctor:function (gameLayer, posicion) {
     // agregar forma dinamica
     gameLayer.space.addShape(this.shape);
 
-    // ejecutar la animación
-    this.sprite.runAction(this.actionAnimacion);
-
     gameLayer.addChild(this.sprite,10);
 
 
 }, update:function (dt) {
 
+           this.tiempoUltimoSalto = this.tiempoUltimoSalto + dt;
 
-  }
+           if(this.tiempoUltimoSalto > this.tiempoEntreSaltos && (this.gameLayer.camioneta.body.getVel().x < 100 && this.gameLayer.camioneta.body.getVel().x > 0))
+               {
+                   this.body.setAngle(0);
+                   this.sprite.stopAllActions();
+                   this.sprite.runAction(this.actionAnimacion);
+                   var actionMover = cc.MoveTo.create(1.5, cc.p(this.sprite.body.p.x - 10,this.sprite.body.p.y));
+                   this.sprite.runAction(actionMover);
+                   this.tiempoUltimoSalto = 0;
+                   this.saltando = true;
+
+               }
+
+   }, terminaSalto:function () {
+
+       if(this.tiempoUltimoSalto > 1.5)
+       {
+           this.sprite.stopAllActions();
+           this.saltando = false;
+       }
+   }
 
 });

@@ -1,5 +1,5 @@
 var Tortuga = cc.Class.extend({
-    tiempoUtimoSalto:0,
+    tiempoUltimoSalto:0,
     tiempoEntreSaltos:0,
     gameLayer:null,
     sprite:null,
@@ -42,34 +42,33 @@ ctor:function (gameLayer, posicion) {
     this.shape.setFriction(4);
     // agregar forma dinamica
     gameLayer.space.addShape(this.shape);
-
-    // ejecutar la animación
-    this.sprite.runAction(this.actionAnimacion);
-
     gameLayer.addChild(this.sprite,10);
 
 
 }, update:function (dt) {
 
-     /* // aumentar el tiempo que ha pasado desde el ultimo salto
-      this.tiempoUtimoSalto = this.tiempoUtimoSalto + dt;
+        this.tiempoUltimoSalto = this.tiempoUltimoSalto + dt;
 
-      // Saltan si el tiempo ha pasado
-      if(this.tiempoUtimoSalto > this.tiempoEntreSaltos){
-         var impulsoX = 50 + Math.floor(Math.random() * 150);
-         var impulsoY = 500 + Math.floor(Math.random() * 200);
+        if(this.tiempoUltimoSalto > this.tiempoEntreSaltos && this.gameLayer.camioneta.body.getVel().x > 150)
+            {
+                this.body.setAngle(0);
+                this.sprite.stopAllActions();
+                this.sprite.runAction(this.actionAnimacion);
+                var actionMover = cc.MoveTo.create(1.5, cc.p(this.sprite.body.p.x - 10,this.sprite.body.p.y));
+                this.sprite.runAction(actionMover);
+                this.tiempoUltimoSalto = 0;
+                this.saltando = true;
 
-          // Colocar en angulo del cuerpo a 0
-          this.body.setAngle(0);
-          this.body.applyImpulse(cp.v(impulsoX, impulsoY), cp.v(0, 0));
-          this.tiempoUtimoSalto = 0;
-          this.saltando = true;
-          this.tiempoEntreSaltos = 4 + Math.floor(Math.random() * 2);
+            }
 
-      }*/
-  }/*, terminaSalto:function () {
+}, terminaSalto:function () {
 
-          this.saltando = false;
-   }*/
+    if(this.tiempoUltimoSalto > 1.5)
+    {
+        this.sprite.stopAllActions();
+        this.saltando = false;
+    }
+}
+
 
 });

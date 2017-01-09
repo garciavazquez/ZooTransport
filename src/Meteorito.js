@@ -8,7 +8,6 @@ ctor:function (gameLayer, posicion) {
 
     // Crear Sprite - Cuerpo y forma
     this.sprite = new cc.PhysicsSprite("#meteorito.png");
-    // Cuerpo estática, no le afectan las fuerzas
     this.body = new cp.Body(5, cp.momentForBox(1,
                        this.sprite.getContentSize().width,
                        this.sprite.getContentSize().height));

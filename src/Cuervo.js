@@ -70,6 +70,11 @@ ctor:function (gameLayer, posicion) {
   }, terminaSalto:function () {
 
           this.saltando = false;
-   }
+   }, caeAlSuelo:function() {
+            cc.director.runScene(new GameScene());
+       }, sePrecipita:function() {
+                if(this.sprite.body.p.y <0)
+                    cc.director.runScene(new GameScene());
+           }
 
 });

@@ -1,12 +1,22 @@
 var Gallina = cc.Class.extend({
+    tiempoUltimoSalto:[],
+    tiempoEntreSaltos:[],
     gameLayer:null,
-    sprite:null,
-    shape:null,
+    sprite:[],
+    shape:[],
     saltando:false,
-    actionAnimacion:null,
+    actionAnimacion:[],
+    numeroGallinas:3,
+    seCayo:-1,
+    body:[],
+    eliminado:-1,
 ctor:function (gameLayer, posicion) {
     this.gameLayer = gameLayer;
-    this.tiempoEntreSaltos = 4 + Math.floor(Math.random() * 2);
+    for (var i = 0; i<3; i++)
+        {
+         this.tiempoEntreSaltos[i] = 3 + Math.floor(Math.random() * 3);
+         this.tiempoUltimoSalto[i] = 0;
+         }
     // Crear animación
    var framesAnimacion = [];
    for (var i=1; i<=5; i++){
@@ -15,40 +25,89 @@ ctor:function (gameLayer, posicion) {
     framesAnimacion.push(frame);
    }
 
-   var animacion = new cc.Animation(framesAnimacion, 0.2);
-   this.actionAnimacion =
-           new cc.RepeatForever(new cc.Animate(animacion));
+
 
     // Crear Sprite - Cuerpo y forma
-    this.sprite = new cc.PhysicsSprite("#gallina1.png");
+    for (var i = 0; i<3; i++)
+    {
+        var random = 0.1 + Math.random() * 0.5;
+        var animacion = new cc.Animation(framesAnimacion, random);
+        this.actionAnimacion[i] =
+                   new cc.RepeatForever(new cc.Animate(animacion));
+        this.sprite[i] = new cc.PhysicsSprite("#gallina1.png");
+        this.body[i] = new cp.Body(1, cp.momentForBox(0.1,
+           this.sprite[i].getContentSize().width,
+            this.sprite[i].getContentSize().height));
 
-    this.body = new cp.Body(1, cp.momentForBox(0.1,
-       this.sprite.getContentSize().width,
-        this.sprite.getContentSize().height));
+            this.body[i].setPos(cc.p(posicion.x - (i*30), posicion.y));
+            this.body[i].setAngle(0);
+            this.sprite[i].setBody(this.body[i]);
+            // Se añade el cuerpo al espacio
+            gameLayer.space.addBody(this.body[i]);
 
-    this.body.setPos(posicion);
-    this.body.setAngle(0);
-    this.sprite.setBody(this.body);
-    // Se añade el cuerpo al espacio
-    gameLayer.space.addBody(this.body);
+            // forma
+            this.shape[i] = new cp.BoxShape(this.body[i],
+            this.sprite[i].getContentSize().width - 25,
+            this.sprite[i].getContentSize().height - 25);
+            this.shape[i].setCollisionType(tipoAnimal);
+            this.shape[i].setFriction(8);
+            // agregar forma dinamica
+            gameLayer.space.addShape(this.shape[i]);
 
-    // forma
-    this.shape = new cp.BoxShape(this.body,
-        this.sprite.getContentSize().width - 25,
-        this.sprite.getContentSize().height - 25);
-    this.shape.setCollisionType(tipoAnimal);
-    this.shape.setFriction(4);
-    // agregar forma dinamica
-    gameLayer.space.addShape(this.shape);
+            // ejecutar la animación
+            this.sprite[i].runAction(this.actionAnimacion[i]);
 
-    // ejecutar la animación
-    this.sprite.runAction(this.actionAnimacion);
-
-    gameLayer.addChild(this.sprite,10);
+            gameLayer.addChild(this.sprite[i],10);
+    }
 
 }, update:function (dt) {
+       if (this.seCayo != -1)
+        {
+            this.eliminado = this.seCayo;
+            this.gameLayer.space.removeShape(this.shape[this.seCayo]);
+            this.gameLayer.removeChild(this.sprite[this.seCayo]);
+            this.seCayo = -1;
+        }
+
+         // aumentar el tiempo que ha pasado desde el ultimo salto
 
 
-  }
+          for (var i=0; i<3; i++)
+          {
+            this.tiempoUltimoSalto[i] = this.tiempoUltimoSalto[i] + dt;
+              // Saltan si el tiempo ha pasado
+              if(this.eliminado != i && this.tiempoUltimoSalto[i] > this.tiempoEntreSaltos[i]){
+                  // Colocar en angulo del cuerpo a 0
+                  this.sprite[i].body.setAngle(0);
+                  this.sprite[i].body.applyImpulse(cp.v(20, 120), cp.v(0, 0));
+                  this.tiempoUltimoSalto[i] = 0;
+                  }
+
+          }
+
+
+
+  }, caeAlSuelo:function() {
+        this.numeroGallinas = this.numeroGallinas -1;
+        var menor = 999;
+        if (this.numeroGallinas < 2)
+            cc.director.runScene(new GameScene());
+        else
+            for (var i = 0; i<3; i++)
+                    if (this.sprite[i].body.p.y < menor)
+                         this.seCayo = i;
+
+   }, sePrecipita:function() {
+             for (var i = 0; i<3; i++)
+                if (this.eliminado != i && this.sprite[i].body.p.y < 0)
+                    {
+                        this.numeroGallinas = this.numeroGallinas -1;
+                        if (this.numeroGallinas < 2)
+                            cc.director.runScene(new GameScene());
+                        this.gameLayer.space.removeShape(this.shape[i]);
+                        this.gameLayer.removeChild(this.sprite[i]);
+                    }
+
+       }
 
 });
